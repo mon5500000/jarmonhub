@@ -58,8 +58,11 @@ if _G.AutoFarm then
 				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
 				{CFrame = CFrame.new(-59.09392166137695, -357.79449462890625, 9483.427734375)}):Play()
 				task.wait(0.7)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-55.9123649597168, -357.9725646972656, 9490.365234375)
+				local TweenService = game:GetService("TweenService")
+				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+				{CFrame = CFrame.new(-55.9123649597168, -357.9725646972656, 9490.365234375)}):Play()
 				Tw:Play()
+				task.wait(1.5)
         wait(17.2)
     end
 end
