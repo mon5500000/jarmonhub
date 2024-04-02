@@ -1,5 +1,6 @@
 if _G.AutoFarm then
-    while true do
+    while true do -- This creates the infinite loop 
+
 		local Adfdf = Instance.new("BodyVelocity")
 		Adfdf.Name = "BodyClip"
 		Adfdf.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
@@ -8,63 +9,62 @@ if _G.AutoFarm then
 		local TweenService = game:GetService("TweenService")
 		local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
 		{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage1.Sand.CFrame + Vector3.new(0, 50, 0)})
-				Tw:Play()
-				task.wait(1.8)
-				local TweenService = game:GetService("TweenService")
-				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-				{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage2.Sand.CFrame + Vector3.new(0, 30, 0)})
-				Tw:Play()
-				task.wait(1.9)
-				local TweenService = game:GetService("TweenService")
-				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-				{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage3.Sand.CFrame + Vector3.new(0, 30, 0)})
-				Tw:Play()
-				task.wait(1.8)
-				local TweenService = game:GetService("TweenService")
-				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-				{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage4.Sand.CFrame + Vector3.new(0, 30, 0)})
-				Tw:Play()
-				task.wait(1.8)
-				local TweenService = game:GetService("TweenService")
-				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-				{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage5.Sand.CFrame + Vector3.new(0, 30, 0)})
-				Tw:Play()
-				task.wait(1.8)
-				local TweenService = game:GetService("TweenService")
-				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-				{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage6.Sand.CFrame + Vector3.new(0, 50, 0)})
-				Tw:Play()
-				task.wait(1.8)
-				local TweenService = game:GetService("TweenService")
-				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-				{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage7.Sand.CFrame + Vector3.new(0, 50, 0)})
-				Tw:Play()
-				task.wait(1.8)
-				local TweenService = game:GetService("TweenService")
-				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-				{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage8.Sand.CFrame + Vector3.new(0, 50, 0)})
-				Tw:Play()
-				task.wait(1.8)
-				local TweenService = game:GetService("TweenService")
-				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-				{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage9.Sand.CFrame + Vector3.new(0, 70, 0)})
-				Tw:Play()
-				task.wait(1.8)
-				local TweenService = game:GetService("TweenService")
-				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-				{CFrame = CFrame.new(-59.152435302734375, 95.01837158203125, 8500.4814453125)}):Play()
-				task.wait(1.8)
-				local TweenService = game:GetService("TweenService")
-				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-				{CFrame = CFrame.new(-59.09392166137695, -357.79449462890625, 9483.427734375)}):Play()
-				task.wait(0.7)
-				local TweenService = game:GetService("TweenService")
-				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-				{CFrame = CFrame.new(-55.9123649597168, -357.9725646972656, 9490.365234375)}):Play()
-				Tw:Play()
-				task.wait(1.5)
-        wait(17.2)
-    end
+local TweenService = game:GetService("TweenService")
+Tw:Play()
+task.wait(1.8)
+local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage2.Sand.CFrame + Vector3.new(0, 30, 0)})
+Tw:Play()
+task.wait(1.9)
+Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage3.Sand.CFrame + Vector3.new(0, 30, 0)})
+Tw:Play()
+task.wait(1.8)
+Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage4.Sand.CFrame + Vector3.new(0, 30, 0)})
+Tw:Play()
+task.wait(1.8)
+Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage5.Sand.CFrame + Vector3.new(0, 30, 0)})
+Tw:Play()
+task.wait(1.8)
+Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage6.Sand.CFrame + Vector3.new(0, 50, 0)})
+Tw:Play()
+task.wait(1.8)
+
+Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage7.Sand.CFrame + Vector3.new(0, 50, 0)})
+Tw:Play()
+task.wait(1.8)
+
+Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage8.Sand.CFrame + Vector3.new(0, 50, 0)})
+Tw:Play()
+task.wait(1.8)
+
+Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage9.Sand.CFrame + Vector3.new(0, 70, 0)})
+Tw:Play()
+task.wait(1.8)
+
+Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+{CFrame = CFrame.new(-59.152435302734375, 95.01837158203125, 8500.4814453125)})
+Tw:Play()
+task.wait(1.8)
+
+Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+{CFrame = CFrame.new(-59.09392166137695, -357.79449462890625, 9483.427734375)})
+Tw:Play()
+task.wait(0.7)
+
+Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+{CFrame = CFrame.new(-55.9123649597168, -357.9725646972656, 9490.365234375)})
+Tw:Play()
+task.wait(17.2) 
+
+_G.AutoFarm = true
+end
 end
 local VirtualUser = game:GetService('VirtualUser')
 local Players = game:GetService("Players")
@@ -129,59 +129,61 @@ btns:Toggle("Auto-Farm", false, function(t)
 		local TweenService = game:GetService("TweenService")
 		local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
 		{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage1.Sand.CFrame + Vector3.new(0, 50, 0)})
-				Tw:Play()
-				task.wait(1.8)
-				local TweenService = game:GetService("TweenService")
-				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-				{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage2.Sand.CFrame + Vector3.new(0, 30, 0)})
-				Tw:Play()
-				task.wait(1.9)
-				local TweenService = game:GetService("TweenService")
-				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-				{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage3.Sand.CFrame + Vector3.new(0, 30, 0)})
-				Tw:Play()
-				task.wait(1.8)
-				local TweenService = game:GetService("TweenService")
-				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-				{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage4.Sand.CFrame + Vector3.new(0, 30, 0)})
-				Tw:Play()
-				task.wait(1.8)
-				local TweenService = game:GetService("TweenService")
-				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-				{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage5.Sand.CFrame + Vector3.new(0, 30, 0)})
-				Tw:Play()
-				task.wait(1.8)
-				local TweenService = game:GetService("TweenService")
-				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-				{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage6.Sand.CFrame + Vector3.new(0, 50, 0)})
-				Tw:Play()
-				task.wait(1.8)
-				local TweenService = game:GetService("TweenService")
-				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-				{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage7.Sand.CFrame + Vector3.new(0, 50, 0)})
-				Tw:Play()
-				task.wait(1.8)
-				local TweenService = game:GetService("TweenService")
-				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-				{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage8.Sand.CFrame + Vector3.new(0, 50, 0)})
-				Tw:Play()
-				task.wait(1.8)
-				local TweenService = game:GetService("TweenService")
-				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-				{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage9.Sand.CFrame + Vector3.new(0, 70, 0)})
-				Tw:Play()
-				task.wait(1.8)
-				local TweenService = game:GetService("TweenService")
-				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-				{CFrame = CFrame.new(-59.152435302734375, 95.01837158203125, 8500.4814453125)}):Play()
-				task.wait(1.8)
-				local TweenService = game:GetService("TweenService")
-				local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-				{CFrame = CFrame.new(-59.09392166137695, -357.79449462890625, 9483.427734375)}):Play()
-				task.wait(0.7)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-55.9123649597168, -357.9725646972656, 9490.365234375)
-				Tw:Play()
-        wait(17.2)
+local TweenService = game:GetService("TweenService")
+Tw:Play()
+task.wait(1.8)
+local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage2.Sand.CFrame + Vector3.new(0, 30, 0)})
+Tw:Play()
+task.wait(1.9)
+Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage3.Sand.CFrame + Vector3.new(0, 30, 0)})
+Tw:Play()
+task.wait(1.8)
+Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage4.Sand.CFrame + Vector3.new(0, 30, 0)})
+Tw:Play()
+task.wait(1.8)
+Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage5.Sand.CFrame + Vector3.new(0, 30, 0)})
+Tw:Play()
+task.wait(1.8)
+Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage6.Sand.CFrame + Vector3.new(0, 50, 0)})
+Tw:Play()
+task.wait(1.8)
+
+Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage7.Sand.CFrame + Vector3.new(0, 50, 0)})
+Tw:Play()
+task.wait(1.8)
+
+Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage8.Sand.CFrame + Vector3.new(0, 50, 0)})
+Tw:Play()
+task.wait(1.8)
+
+Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage9.Sand.CFrame + Vector3.new(0, 70, 0)})
+Tw:Play()
+task.wait(1.8)
+
+Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+{CFrame = CFrame.new(-59.152435302734375, 95.01837158203125, 8500.4814453125)})
+Tw:Play()
+task.wait(1.8)
+
+Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+{CFrame = CFrame.new(-59.09392166137695, -357.79449462890625, 9483.427734375)})
+Tw:Play()
+task.wait(0.7)
+
+Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+{CFrame = CFrame.new(-55.9123649597168, -357.9725646972656, 9490.365234375)})
+Tw:Play()
+task.wait(17.2) 
+
+
     end
 
 end)
