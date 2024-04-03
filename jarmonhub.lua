@@ -152,7 +152,7 @@ btns:Toggle("Auto-Farm", false, function(t)
 		{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage1.Sand.CFrame + Vector3.new(0, 50, 0)})
 local TweenService = game:GetService("TweenService")
 Tw:Play()
-task.wait(1.9)
+task.wait(2)
 local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
 {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage2.Sand.CFrame + Vector3.new(0, 30, 0)})
 Tw:Play()
