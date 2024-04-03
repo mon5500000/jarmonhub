@@ -202,7 +202,7 @@ task.wait(0.7)
 Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
 {CFrame = CFrame.new(-55.9123649597168, -357.9725646972656, 9490.365234375)})
 Tw:Play()
-task.wait(17.2) 
+task.wait(18.2) 
 
 
     end
