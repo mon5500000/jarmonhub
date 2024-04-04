@@ -20,7 +20,15 @@ if game.PlaceId ~= 537413528 then
     
     coroutine.resume(Rejoin)
 end
+local VirtualUser = game:GetService('VirtualUser')
+local Players = game:GetService("Players")
 
+local function antiAfk()
+    while wait(60) do -- ทำซ้ำทุกๆ 60 วินาที (ปรับเวลาได้)
+        VirtualUser:CaptureController()
+        VirtualUser:ClickButton2(Vector2.new()) -- การกระทำป้องกัน AFK
+    end
+end
 if _G.AutoFarm then
     while true do -- This creates the infinite loop 
 
@@ -91,15 +99,6 @@ _G.AutoFarm = true
 
 		
 end
-end
-local VirtualUser = game:GetService('VirtualUser')
-local Players = game:GetService("Players")
-
-local function antiAfk()
-    while wait(60) do -- ทำซ้ำทุกๆ 60 วินาที (ปรับเวลาได้)
-        VirtualUser:CaptureController()
-        VirtualUser:ClickButton2(Vector2.new()) -- การกระทำป้องกัน AFK
-    end
 end
 
 -- เชื่อมต่อกับเหตุการณ์ 'Idled'
