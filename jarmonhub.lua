@@ -29,6 +29,9 @@ local function antiAfk()
         VirtualUser:ClickButton2(Vector2.new()) -- การกระทำป้องกัน AFK
     end
 end
+-- เชื่อมต่อกับเหตุการณ์ 'Idled'
+local player = Players.LocalPlayer
+player.Idled:connect(antiAfk)
 if _G.AutoFarm then
     while true do -- This creates the infinite loop 
 
@@ -101,9 +104,7 @@ _G.AutoFarm = true
 end
 end
 
--- เชื่อมต่อกับเหตุการณ์ 'Idled'
-local player = Players.LocalPlayer
-player.Idled:connect(antiAfk)
+
 local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/jarmonxd/jarmonhubobf/main/ui.lua")()
 
 local win = DiscordLib:Window("jarmon hub - Build a Boat For Treasure by jarmon")
