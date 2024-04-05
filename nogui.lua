@@ -8,7 +8,6 @@ end
 -- เชื่อมต่อกับเหตุการณ์ 'Idled'
 local player = Players.LocalPlayer
 player.Idled:connect(antiAfk)
-_G.AutoFarm = true
 if _G.AutoFarm then
     while true do -- This creates the infinite loop 
 
