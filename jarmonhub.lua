@@ -111,9 +111,15 @@ local win = DiscordLib:Window("jarmon hub - Build a Boat For Treasure by jarmon"
 
 local serv = win:Server("jarmon hub", "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXVzZXIiPjxwYXRoIGQ9Ik0xOSAyMXYtMmE0IDQgMCAwIDAtNC00SDlhNCA0IDAgMCAwLTQgNHYyIi8+PGNpcmNsZSBjeD0iMTIiIGN5PSI3IiByPSI0Ii8+PC9zdmc+")
 
-local rtux = serv:Channel("เริ่มต้น")
+local rtux = serv:Channel("🗨 ・ เริ่มต้น")
 rtux:Button(
     "ไม่มีไรไปดูหน้าอื่นๆได้เลยครับ",
+    function()
+        DiscordLib:Notification("แจ้งเตือน", "กดเพื่อ!", "โอ้วไปละ")
+    end
+)
+rtux:Button(
+    "สคริปต์อัพเดทล่าสุด 5/4/2567 ✅",
     function()
         DiscordLib:Notification("แจ้งเตือน", "กดเพื่อ!", "โอ้วไปละ")
     end
