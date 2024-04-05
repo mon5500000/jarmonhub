@@ -109,7 +109,7 @@ local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/jar
 
 local win = DiscordLib:Window("jarmon hub - Build a Boat For Treasure by jarmon")
 
-local serv = win:Server("jarmon hub", "rbxassetid://17017095225")
+local serv = win:Server("jarmon hub", "rbxassetid://17017261752")
 
 local rtux = serv:Channel("🗨 ・ เริ่มต้น")
 rtux:Button(
