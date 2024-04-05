@@ -118,7 +118,7 @@ rtux:Button(
         DiscordLib:Notification("แจ้งเตือน", "กดเพื่อ!", "โอ้วไปละ")
     end
 )
-local btns = serv:Channel("ฟาม")
+local btns = serv:Channel("❌ ・ ฟาม")
 
 local autoFarmEnabledOnStart = true
 
@@ -260,7 +260,7 @@ btns:Bind("Kill bind", Enum.KeyCode.Delete, function()
         wait(5)
         DiscordLib:Notification("แจ้งเตือน", "okฉันฆ่าคุณละ", "โอ้วตกลง!")
     end)
-local bnds = serv:Channel("หน้าหลัก")
+local bnds = serv:Channel("🛠 ・ หน้าหลัก")
 local sldr =
 bnds:Slider(
     "ความเร็ว",
@@ -411,7 +411,7 @@ bnds:Button(
         s.Spread = 0.146
     end
 )
-local brns = serv:Channel("fps")
+local brns = serv:Channel("☁ ・ fps")
 brns:Button(
     "fps สูงสุด",
     function()
@@ -491,7 +491,7 @@ brns:Button(
         loadstring(game:HttpGet("https://pastebin.com/raw/g71kFyzH"))()
     end
 )
-local unus = serv:Channel("เซิร์ฟเวอร์")
+local unus = serv:Channel("🔁 ・ เซิร์ฟเวอร์")
 
 unus:Button(
     "rejoin	",
@@ -522,7 +522,7 @@ unus:Button(
     end
 )
 
-local bnus = serv:Channel("TP")
+local bnus = serv:Channel("⚔ ・ TP")
 Plr = {}
 for i,v in pairs(game:GetService("Players"):GetChildren()) do
     table.insert(Plr,v.Name) 
