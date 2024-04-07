@@ -1,5 +1,4 @@
-_G.AutoFarm = config.autoFarm
-_G.language = config.language
+
 
 local TeleportService = game:GetService("TeleportService")
 local Players = game:GetService("Players")
@@ -22,6 +21,7 @@ if game.PlaceId ~= 537413528 then
     
     coroutine.resume(Rejoin)
 end
+
 local VirtualUser = game:GetService('VirtualUser')
 local Players = game:GetService("Players")
 
@@ -34,6 +34,7 @@ end
 -- เชื่อมต่อกับเหตุการณ์ 'Idled'
 local player = Players.LocalPlayer
 player.Idled:connect(antiAfk)
+
 if _G.AutoFarm then
     while true do -- This creates the infinite loop 
 
