@@ -1,3 +1,8 @@
+-- Apply configuration
+local config = {
+    autoFarm = false,
+    language = "EG",
+}
 _G.AutoFarm = config.autoFarm
 _G.language = config.language
 
