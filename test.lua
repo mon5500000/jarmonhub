@@ -106,14 +106,6 @@ end
 
 
 
-
-
-_G.Englishlanguage = true
-
-
-
-
-
 if _G.Englishlanguage then
     game.Players.LocalPlayer:Kick("not supported English language")
 
