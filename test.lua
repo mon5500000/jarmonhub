@@ -106,9 +106,18 @@ end
 
 
 
-if _G.Englishlanguage then
-    game.Players.LocalPlayer:Kick("not supported English language")
+local config = {
+    autoFarm = true,
+    language = "TH",
+}
 
+-- Apply configuration
+_G.AutoFarm = config.autoFarm
+_G.language = config.language
+
+
+if _G.language == "EG" then
+    game.Players.LocalPlayer:Kick("not supported English language")
 else
     local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/jarmonxd/jarmonhubobf/main/ui.lua")()
 
