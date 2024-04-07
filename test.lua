@@ -1,3 +1,6 @@
+-- Apply configuration
+_G.AutoFarm = config.autoFarm
+_G.language = config.language
 
 local TeleportService = game:GetService("TeleportService")
 local Players = game:GetService("Players")
@@ -104,16 +107,6 @@ end
 
 
 
-
-
-local config = {
-    autoFarm = true,
-    language = "TH",
-}
-
--- Apply configuration
-_G.AutoFarm = config.autoFarm
-_G.language = config.language
 
 
 if _G.language == "EG" then
