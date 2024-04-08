@@ -1,3 +1,9 @@
+if not _G.Config then
+    _G.Config = {
+        Autofarm = true,
+        Language = 'ENG',
+    }
+end
 local TeleportService = game:GetService("TeleportService")
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
