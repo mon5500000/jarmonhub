@@ -114,7 +114,7 @@ end
 
 
 
-if _G.language == "ENG" then
+if _G.language == 'ENG' then
     local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/jarmonxd/jarmonhubobf/main/ui.lua")()
 
     local win = DiscordLib:Window("jarmon hub - Build a Boat For Treasure by jarmon")
