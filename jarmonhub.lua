@@ -1,1018 +1,690 @@
-if not _G.Config then
-    _G.Config = {
-        Autofarm = true,
-        Language = "ENG",
-    }
-_G.AutoFarm = config.autoFarm
-_G.language = config.language
-end
-local TeleportService = game:GetService("TeleportService")
-local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
-if game.PlaceId ~= 537413528 then
-    local TeleportService = game:GetService("TeleportService")
-    local Players = game:GetService("Players")
-    local LocalPlayer = Players.LocalPlayer
-    game.Players.LocalPlayer:Kick("Game is not supported")
-    wait(1)
-    local Rejoin = coroutine.create(function()
-        local Success, ErrorMessage = pcall(function()
-            TeleportService:Teleport(game.PlaceId, LocalPlayer)
-        end)
+local Window = Fluent:CreateWindow({
+    Title = "Build A Boat For Treasure - Jarmon Hub V1",
+    SubTitle = "Free Script",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
+    Theme = "Amethyst",
+    MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
+})
+
+--Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
+local Tabs = {
+    status = Window:AddTab({ Title = "status", Icon = "bar-chart-2" }),
+    Farm = Window:AddTab({ Title = "Farm", Icon = "flag-triangle-right" }),
+    Main = Window:AddTab({ Title = "Main", Icon = "home" }),
+    Server = Window:AddTab({ Title = "Server", Icon = "network" }),
+    tp = Window:AddTab({ Title = "teleport", Icon = "send" }),
+    tpcolor = Window:AddTab({ Title = "teleportcolor", Icon = "swords" }),
+    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" }),
+    test = Window:AddTab({ Title = "test", Icon = "party-popper" }),
+}
+
+local Options = Fluent.Options
+---------------------------------------------(status)------------------------------------------------
+do
+    Fluent:Notify({
+        Title = "เรายังทํายังไม่เสร็จ",
+        Content = "ระวังโปรนอนอ้วนด้วยหละ",
+        SubContent = "ขอตัวไปศึกษาการทําโปรก่อนน้าา", -- Optional
+        Duration = 5 -- Set to nil to make the notification not disappear
+    })
+
+    Tabs.status:AddParagraph({
+        Title = " Last Updated 📅 ",
+        Content = "1/04/2024"
+    })
+    Tabs.status:AddParagraph({
+        Title = " Coming Soon 🕘 ",
+        Content = "เราจะเปิดให้ใช้งานเร็วๆนี้ครับ"
+    })
+
+
+
+        ---------------------------------------------(Farm)------------------------------------------------
     
-        if ErrorMessage and not Success then
-            warn(ErrorMessage)
-        end
-    end)
-    
-    coroutine.resume(Rejoin)
-end
-
-local VirtualUser = game:GetService('VirtualUser')
-local Players = game:GetService("Players")
-
-local function antiAfk()
-    while wait(60) do -- ทำซ้ำทุกๆ 60 วินาที (ปรับเวลาได้)
-        VirtualUser:CaptureController()
-        VirtualUser:ClickButton2(Vector2.new()) -- การกระทำป้องกัน AFK
-    end
-end
--- เชื่อมต่อกับเหตุการณ์ 'Idled'
-local player = Players.LocalPlayer
-player.Idled:connect(antiAfk)
-
-if _G.AutoFarm then
-    while true do -- This creates the infinite loop 
-
-		local Adfdf = Instance.new("BodyVelocity")
-		Adfdf.Name = "BodyClip"
-		Adfdf.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-		Adfdf.MaxForce = Vector3.new(100, 100, 100) * math.huge
-		Adfdf.Velocity = Vector3.new(0,0,0)
-		local TweenService = game:GetService("TweenService")
-		local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-		{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage1.Sand.CFrame + Vector3.new(0, 70, 0)})
-local TweenService = game:GetService("TweenService")
-Tw:Play()
-task.wait(1.8)
-local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage2.Sand.CFrame + Vector3.new(0, 80, 0)})
-Tw:Play()
-task.wait(1.9)
-Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage3.Sand.CFrame + Vector3.new(0, 80, 0)})
-Tw:Play()
-task.wait(1.9)
-Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage4.Sand.CFrame + Vector3.new(0, 80, 0)})
-Tw:Play()
-task.wait(1.9)
-Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage5.Sand.CFrame + Vector3.new(0, 80, 0)})
-Tw:Play()
-task.wait(1.9)
-Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage6.Sand.CFrame + Vector3.new(0, 80, 0)})
-Tw:Play()
-task.wait(1.9)
-
-Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage7.Sand.CFrame + Vector3.new(0, 80, 0)})
-Tw:Play()
-task.wait(1.9)
-
-Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage8.Sand.CFrame + Vector3.new(0, 80, 0)})
-Tw:Play()
-task.wait(1.9)
-
-Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-{CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage9.Sand.CFrame + Vector3.new(0, 80, 0)})
-Tw:Play()
-task.wait(1.9)
-
-Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-{CFrame = CFrame.new(-59.152435302734375, 95.01837158203125, 8500.4814453125)})
-Tw:Play()
-task.wait(1.9)
-
-Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-{CFrame = CFrame.new(-59.09392166137695, -357.79449462890625, 9483.427734375)})
-Tw:Play()
-task.wait(0.7)
-
-Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-{CFrame = CFrame.new(-55.9123649597168, -357.9725646972656, 9490.365234375)})
-Tw:Play()
-task.wait(18) 
-_G.AutoFarm = false
-task.wait(1) 
-_G.AutoFarm = true
-end
-end
-
-
-
-
-
-if _G.language == "ENG" then
-    local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/jarmonxd/jarmonhubobf/main/ui.lua")()
-
-    local win = DiscordLib:Window("jarmon hub - Build a Boat For Treasure by jarmon")
-    
-    local serv = win:Server("jarmon hub", "rbxassetid://17017261752")
-    
-    local rtux = serv:Channel("🗨 ・ test")
-    rtux:Button(
-        "Nothing to see here.",
-        function()
-            DiscordLib:Notification("แจ้งเตือน", "กดเพื่อ!", "โอ้วไปละ")
-        end
-    )
-    rtux:Button(
-        "Latest Script Update: April 7th, 2024 ✅",
-        function()
-            DiscordLib:Notification("แจ้งเตือน", "กดเพื่อ!", "โอ้วไปละ")
-        end
-    )
-    local btns = serv:Channel("🐔 ・ Farm")
-    
-    local autoFarmEnabledOnStart = true
-    
-    
-    
-    local shouldRun = true -- ตัวแปรควบคุมสำหรับการทำงานของลูป 
-    btns:Button(
-        "antiAfk",
-        function()
-            local VirtualUser = game:GetService('VirtualUser')
-            local Players = game:GetService("Players")
-            
-            local function antiAfk()
-                while wait(60) do -- ทำซ้ำทุกๆ 60 วินาที (ปรับเวลาได้)
-                    VirtualUser:CaptureController()
-                    VirtualUser:ClickButton2(Vector2.new()) -- การกระทำป้องกัน AFK
-                end
-            end
-            
-            -- เชื่อมต่อกับเหตุการณ์ 'Idled'
-            local player = Players.LocalPlayer
-            player.Idled:connect(antiAfk)
-            DiscordLib:Notification("แจ้งเตือน", "เราได้เปิดใช้งานฟังชั่นแล้ว", "โอ้ววโอเค!!")
-        end
-    )
-    btns:Seperator()
-    btns:Button( "Auto-Farm",function()
         local config = {
-            autoFarm = true,
-            language = "EG",
+            autoFarm = false
         }
         _G.AutoFarm = config.autoFarm
-        _G.language = config.language
-        loadstring(game:HttpGet"https://raw.githubusercontent.com/mon5500000/jarmonhub/main/test.lua")()
-    
-    end)
-    
-    
-    
-    btns:Toggle("Auto Farm old", autoFarmEnabledOnStart, function(autoFarmEnabledOnStart)
-                while shouldRun do
-                while true do -- ลูปแบบวนไม่รู้จบ
-                local TweenService = game:GetService("TweenService")
-                local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-                {CFrame = CFrame.new(-72.1803665, 93.0172119, 687.601196, -0.999440074, 0.00150631333, -0.0334255174, 8.50787529e-09, 0.998986125, 0.0450188294, 0.0334594399, 0.0449936241, -0.998426795)}):Play()
-                wait(0)
+
+        local Toggle = Tabs.Farm:AddToggle("AutoFarm", {Title = "AutoFarm", Default = config.autoFarm })
+
+        Toggle:OnChanged(function(Value)
+            while Value do -- This creates the infinite loop 
+
                 local Adfdf = Instance.new("BodyVelocity")
-            Adfdf.Name = "BodyClip"
-            Adfdf.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-            Adfdf.MaxForce = Vector3.new(100, 100, 100) * math.huge
-            Adfdf.Velocity = Vector3.new(0,0,0)
-                local TweenService = game:GetService("TweenService")
-                local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(19.5, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-                {CFrame = CFrame.new(-26.0942402, 102.713982, 8696.9834, 0.991173387, -0.0190039258, 0.131202593, -1.15081278e-08, 0.989672303, 0.143348306, -0.132571757, -0.142083034, 0.980936885)}):Play()
-                wait(19)
+                Adfdf.Name = "BodyClip"
+                Adfdf.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+                Adfdf.MaxForce = Vector3.new(100, 100, 100) * math.huge
+                Adfdf.Velocity = Vector3.new(0,0,0)
                 local TweenService = game:GetService("TweenService")
                 local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-                {CFrame = CFrame.new(-55.9123649597168, -357.9725646972656, 9490.365234375)}):Play()
-                wait(2.2)
-                local TweenService = game:GetService("TweenService")
-                local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0.3, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-                {CFrame = CFrame.new(-55.9123649597168, -357.9725646972656, 9490.365234375)}):Play()
-                wait(1)
-                wait(17.2)
-                end
-            end
-        end)
-        btns:Seperator()
-        btns:Button("Kill Using Proc Hack or Press Del Button", function()
-            game.Players.LocalPlayer.Character:BreakJoints()
-            wait(5)
+                {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage1.Sand.CFrame + Vector3.new(0, 70, 0)})
+        local TweenService = game:GetService("TweenService")
+        Tw:Play()
+        task.wait(1.8)
+        local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+        {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage2.Sand.CFrame + Vector3.new(0, 80, 0)})
+        Tw:Play()
+        task.wait(1.9)
+        Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+        {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage3.Sand.CFrame + Vector3.new(0, 80, 0)})
+        Tw:Play()
+        task.wait(1.9)
+        Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+        {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage4.Sand.CFrame + Vector3.new(0, 80, 0)})
+        Tw:Play()
+        task.wait(1.9)
+        Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+        {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage5.Sand.CFrame + Vector3.new(0, 80, 0)})
+        Tw:Play()
+        task.wait(1.9)
+        Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+        {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage6.Sand.CFrame + Vector3.new(0, 80, 0)})
+        Tw:Play()
+        task.wait(1.9)
         
-        DiscordLib:Notification("แจ้งเตือน", "okฉันฆ่าคุณละ", "โอ้วตกลง!")
+        Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+        {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage7.Sand.CFrame + Vector3.new(0, 80, 0)})
+        Tw:Play()
+        task.wait(1.9)
+        
+        Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+        {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage8.Sand.CFrame + Vector3.new(0, 80, 0)})
+        Tw:Play()
+        task.wait(1.9)
+        
+        Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+        {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage9.Sand.CFrame + Vector3.new(0, 80, 0)})
+        Tw:Play()
+        task.wait(1.9)
+        
+        Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+        {CFrame = CFrame.new(-59.152435302734375, 95.01837158203125, 8500.4814453125)})
+        Tw:Play()
+        task.wait(1.9)
+        
+        Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+        {CFrame = CFrame.new(-59.09392166137695, -357.79449462890625, 9483.427734375)})
+        Tw:Play()
+        task.wait(0.7)
+        
+        Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+        {CFrame = CFrame.new(-55.9123649597168, -357.9725646972656, 9490.365234375)})
+        Tw:Play()
+        task.wait(18) 
+        config.autoFarm = false
+        task.wait(1) 
+        config.autoFarm = true
+        end
+
         end)
-    btns:Bind("Kill bind", Enum.KeyCode.Delete, function()
-            game.Players.LocalPlayer.Character:BreakJoints()
-            wait(5)
-            DiscordLib:Notification("แจ้งเตือน", "okฉันฆ่าคุณละ", "โอ้วตกลง!")
-        end)
-    local bnds = serv:Channel("🛠 ・ Home")
-    local sldr =
-    bnds:Slider(
-        "Speed",
-        0,
-        500,
-        16,
-        function(t)
-            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = t
+
+        Toggle:SetValue(config.autoFarm)
+
+
+
+
+
+
+    ---------------------------------------------(main)------------------------------------------------
+    local Slider = Tabs.Main:AddSlider("Slider", {
+        Title = "Speed",
+        Description = "Set your speed",
+        Default = 16,
+        Min = 5,
+        Max = 150,
+        Rounding = 1,
+        Callback = function(Value)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
         end
-    )
-    
-    bnds:Button(
-        "Reset Speed",
-        function()
-            sldr:Change(16)
+    })
+    Slider:SetValue(16)
+    Slider:OnChanged(function(Value)
+        print("Slider changed:", Value)
+    end)
+    Tabs.Main:AddButton({
+        Title = "Reset Speed",
+        Description = "Setting the initial speed to 16.",
+        Callback = function()
+            Window:Dialog({
+                Title = "Reset Speed?",
+                Content = "",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                            Slider:SetValue(16)
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled the dialog.")
+                        end
+                    }
+                }
+            })
         end
-    )
-    local sldu =
-    bnds:Slider(
-        "Jump!!",
-        0,
-        500,
-        50,
-        function(t)
-            game.Players.LocalPlayer.Character.Humanoid.JumpPower = t
+    })
+    local Slider = Tabs.Main:AddSlider("Slider", {
+        Title = "JumpPower",
+        Description = "",
+        Default = 50,
+        Min = 5,
+        Max = 150,
+        Rounding = 1,
+        Callback = function(Value)
+            game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
         end
-    )
-    
-    bnds:Button(
-        "Reset Height Jump",
-        function()
-            sldu:Change(50)
-        end
-    )
-    
-    
-    bnds:Toggle(
-        "Infinite Jump",
-        true,
-        function(bool)
-            if bool == true then
+    })
+    local Toggle = Tabs.Main:AddToggle("Anchored", {Title = "Anchored", Default = false })
+
+    Toggle:OnChanged(function(Value)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = Value
+    end)
+    Tabs.Main:AddParagraph({
+        Title = "The Toggle at the bottom is open and cannot be closed.",
+        Content = ""
+    })
+
+    local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Infinite Jump", Default = false })
+
+    Toggle:OnChanged(function(bool)
+        if bool == true then
             local InfiniteJumpEnabled = true
             game:GetService("UserInputService").JumpRequest:connect(function()
                 if InfiniteJumpEnabled then
                     game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
                 
                 else
-                    local InfiniteJumpEnabled = false
+            InfiniteJumpEnabled = false
                 end
             end)
          end
-        end
-    )
-    bnds:Toggle(
-        "Ctrl + Click = tp",
-        false,
-        function(ori)
-            local UIS = game:GetService("UserInputService")
-    
-            local Player = game.Players.LocalPlayer
-            local Mouse = Player:GetMouse()
-            
-            
-            function GetCharacter()
-               return game.Players.LocalPlayer.Character
-            end
-            
-            function Teleport(pos)
-               local Char = GetCharacter()
-               if Char then
-                   Char:MoveTo(pos)
-               end
-            end
-            
-            
-            UIS.InputBegan:Connect(function(input)
-               if input.UserInputType == Enum.UserInputType.MouseButton1 and UIS:IsKeyDown(Enum.KeyCode.LeftControl) then
-                   Teleport(Mouse.Hit.p)
-               end
-            end)
-        end
-    )
-    
-    bnds:Toggle(
-        "Anchored",
-        false,
-        function(Value)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = Value
-        end
-    )
-    bnds:Button(
-        "RTX ON",
-        function()
-            local a = game.Lighting
-            a.Ambient = Color3.fromRGB(33, 33, 33)
-            a.Brightness = 6.67
-            a.ColorShift_Bottom = Color3.fromRGB(0, 0, 0)
-            a.ColorShift_Top = Color3.fromRGB(255, 247, 237)
-            a.EnvironmentDiffuseScale = 0.105
-            a.EnvironmentSpecularScale = 0.522
-            a.GlobalShadows = true
-            a.OutdoorAmbient = Color3.fromRGB(51, 54, 67)
-            a.ShadowSoftness = 0.04
-            a.GeographicLatitude = -15.525
-            a.ExposureCompensation = 0.75
-            local b = Instance.new("BloomEffect", a)
-            b.Enabled = true
-            b.Intensity = 0.04
-            b.Size = 1900
-            b.Threshold = 0.915
-            local c = Instance.new("ColorCorrectionEffect", a)
-            c.Brightness = 0.176
-            c.Contrast = 0.39
-            c.Enabled = true
-            c.Saturation = 0.2
-            c.TintColor = Color3.fromRGB(217, 145, 57)
-            if getgenv().mode == "Summer" then
-               c.TintColor = Color3.fromRGB(255, 220, 148)
-            elseif getgenv().mode == "Autumn" then
-               c.TintColor = Color3.fromRGB(217, 145, 57)
-            else
-               warn("No mode selected!")
-               print("Please select a mode")
-               b:Destroy()
-               c:Destroy()
-            end
-            local d = Instance.new("DepthOfFieldEffect", a)
-            d.Enabled = true
-            d.FarIntensity = 0.077
-            d.FocusDistance = 21.54
-            d.InFocusRadius = 20.77
-            d.NearIntensity = 0.277
-            local e = Instance.new("ColorCorrectionEffect", a)
-            e.Brightness = 0
-            e.Contrast = -0.07
-            e.Saturation = 0
-            e.Enabled = true
-            e.TintColor = Color3.fromRGB(255, 247, 239)
-            local e2 = Instance.new("ColorCorrectionEffect", a)
-            e2.Brightness = 0.2
-            e2.Contrast = 0.45
-            e2.Saturation = -0.1
-            e2.Enabled = true
-            e2.TintColor = Color3.fromRGB(255, 255, 255)
-            local s = Instance.new("SunRaysEffect", a)
-            s.Enabled = true
-            s.Intensity = 0.01
-            s.Spread = 0.146
-        end
-    )
-    local brns = serv:Channel("☁ ・ fps")
-    brns:Button(
-        "fps Max",
-        function()
-            setfpscap(1000)
-        end
-    )
-    btns:Seperator()
-    brns:Button(
-        "fps boost v2",
-        function()
-            local decalsyeeted = true -- Leaving this on makes games look shitty but the fps goes up by at least 20.
-            local g = game
-            local w = g.Workspace
-            local l = g.Lighting
-            local t = w.Terrain
-            t.WaterWaveSize = 0
-            t.WaterWaveSpeed = 0
-            t.WaterReflectance = 0
-            t.WaterTransparency = 0
-            l.GlobalShadows = false
-            l.FogEnd = 9e9
-            l.Brightness = 0
-            settings().Rendering.QualityLevel = "Level01"
-            for i, v in pairs(g:GetDescendants()) do
-                if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
-                    v.Material = "Plastic"
-                    v.Reflectance = 0
-                elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
-                    v.Transparency = 1
-                elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
-                    v.Lifetime = NumberRange.new(0)
-                elseif v:IsA("Explosion") then
-                    v.BlastPressure = 1
-                    v.BlastRadius = 1
-                elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") then
-                    v.Enabled = false
-                elseif v:IsA("MeshPart") then
-                    v.Material = "Plastic"
-                    v.Reflectance = 0
-                    v.TextureID = 10385902758728957
-                end
-            end
-            for i, e in pairs(l:GetChildren()) do
-                if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
-                    e.Enabled = false
-                end
-            end
-        end
-    )
-    brns:Seperator()
-    brns:Button(
-        "fps boost v1",
-        function()
-            _G.Settings = {
-                Players = {
-                    ["Ignore Me"] = true, -- Ignore your Character
-                    ["Ignore Others"] = true -- Ignore other Characters
-                },
-                Meshes = {
-                    Destroy = false, -- Destroy Meshes
-                    LowDetail = true -- Low detail meshes (NOT SURE IT DOES ANYTHING)
-                },
-                Images = {
-                    Invisible = true, -- Invisible Images
-                    LowDetail = false, -- Low detail images (NOT SURE IT DOES ANYTHING)
-                    Destroy = false, -- Destroy Images
-                },
-                ["No Particles"] = true, -- Disables all ParticleEmitter, Trail, Smoke, Fire and Sparkles
-                ["No Camera Effects"] = true, -- Disables all PostEffect's (Camera/Lighting Effects)
-                ["No Explosions"] = true, -- Makes Explosion's invisible
-                ["No Clothes"] = true, -- Removes Clothing from the game
-                ["Low Water Graphics"] = true, -- Removes Water Quality
-                ["No Shadows"] = true, -- Remove Shadows
-                ["Low Rendering"] = true, -- Lower Rendering
-                ["Low Quality Parts"] = true -- Lower quality parts
-            }
-            loadstring(game:HttpGet("https://pastebin.com/raw/g71kFyzH"))()
-        end
-    )
-    local unus = serv:Channel("🌐 ・ Server")
-    
-    unus:Button(
-        "rejoin	",
-        function()
-    local TeleportService = game:GetService("TeleportService")
-    local Players = game:GetService("Players")
-    local LocalPlayer = Players.LocalPlayer
-    
-    local Rejoin = coroutine.create(function()
-        local Success, ErrorMessage = pcall(function()
-            TeleportService:Teleport(game.PlaceId, LocalPlayer)
-        end)
-    
-        if ErrorMessage and not Success then
-            warn(ErrorMessage)
-        end
     end)
-    
-    coroutine.resume(Rejoin)
-        end
-    )
-    unus:Button(
-        "Server Hop	",
-        function()
-            local module = loadstring(game:HttpGet"https://raw.githubusercontent.com/LeoKholYt/roblox/main/lk_serverhop.lua")()
-    
-            module:Teleport(game.PlaceId)
-        end
-    )
-    
-    local bnus = serv:Channel("⚔ ・ TP")
+    local Toggle = Tabs.Main:AddToggle("Ctrl+Click=tp", {Title = "Ctrl + Click = tp", Default = false })
 
-    bnus:Button(
-        "tp by jarmon",
-        function()
-            loadstring(game:HttpGet"https://raw.githubusercontent.com/jarmonxd/jarmonhubobf/main/tp-obf.lua")()
-        end
-    )
+    Toggle:OnChanged(function(Valued)
+        local UIS = game:GetService("UserInputService")
     
-    
-    serv:Channel("by jarmon_ff")
-
-else
-    -- เข้าสู่โหมดภาษาอังกฤษ
-    local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/jarmonxd/jarmonhubobf/main/ui.lua")()
-
-    local win = DiscordLib:Window("jarmon hub - Build a Boat For Treasure by jarmon")
-    
-    local serv = win:Server("jarmon hub", "rbxassetid://17017261752")
-    
-    local rtux = serv:Channel("🗨 ・ เริ่มต้น")
-    rtux:Button(
-        "ไม่มีไรไปดูหน้าอื่นๆได้เลยครับ",
-        function()
-            DiscordLib:Notification("แจ้งเตือน", "กดเพื่อ!", "โอ้วไปละ")
-        end
-    )
-    rtux:Button(
-        "สคริปต์อัพเดทล่าสุด 5/4/2567 ✅",
-        function()
-            DiscordLib:Notification("แจ้งเตือน", "กดเพื่อ!", "โอ้วไปละ")
-        end
-    )
-    local btns = serv:Channel("❌ ・ ฟาม")
-    
-    local autoFarmEnabledOnStart = true
-    
-    
-    
-    local shouldRun = true -- ตัวแปรควบคุมสำหรับการทำงานของลูป 
-    btns:Button(
-        "กันหลุดเพราะafk",
-        function()
-            local VirtualUser = game:GetService('VirtualUser')
-            local Players = game:GetService("Players")
-            
-            local function antiAfk()
-                while wait(60) do -- ทำซ้ำทุกๆ 60 วินาที (ปรับเวลาได้)
-                    VirtualUser:CaptureController()
-                    VirtualUser:ClickButton2(Vector2.new()) -- การกระทำป้องกัน AFK
-                end
-            end
-            
-            -- เชื่อมต่อกับเหตุการณ์ 'Idled'
-            local player = Players.LocalPlayer
-            player.Idled:connect(antiAfk)
-            DiscordLib:Notification("แจ้งเตือน", "เราได้เปิดใช้งานฟังชั่นแล้ว", "โอ้ววโอเค!!")
-        end
-    )
-    btns:Seperator()
-    btns:Toggle("Auto-Farm", false, function(t)
-        while t do
-            while true do
-            local Adfdf = Instance.new("BodyVelocity")
-            Adfdf.Name = "BodyClip"
-            Adfdf.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-            Adfdf.MaxForce = Vector3.new(100, 100, 100) * math.huge
-            Adfdf.Velocity = Vector3.new(0,0,0)
-            local TweenService = game:GetService("TweenService")
-            local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-            {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage1.Sand.CFrame + Vector3.new(0, 70, 0)})
-    local TweenService = game:GetService("TweenService")
-    Tw:Play()
-    task.wait(1.9)
-    local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-    {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage2.Sand.CFrame + Vector3.new(0, 70, 0)})
-    Tw:Play()
-    task.wait(1.9)
-    Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-    {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage3.Sand.CFrame + Vector3.new(0, 70, 0)})
-    Tw:Play()
-    task.wait(1.9)
-    Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-    {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage4.Sand.CFrame + Vector3.new(0, 70, 0)})
-    Tw:Play()
-    task.wait(1.9)
-    Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-    {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage5.Sand.CFrame + Vector3.new(0, 70, 0)})
-    Tw:Play()
-    task.wait(1.9)
-    Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-    {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage6.Sand.CFrame + Vector3.new(0, 70, 0)})
-    Tw:Play()
-    task.wait(1.9)
-    
-    Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-    {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage7.Sand.CFrame + Vector3.new(0, 70, 0)})
-    Tw:Play()
-    task.wait(1.9)
-    
-    Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-    {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage8.Sand.CFrame + Vector3.new(0, 70, 0)})
-    Tw:Play()
-    task.wait(1.9)
-    
-    Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-    {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage9.Sand.CFrame + Vector3.new(0, 70, 0)})
-    Tw:Play()
-    task.wait(1.9)
-    
-    Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-    {CFrame = CFrame.new(-59.152435302734375, 95.01837158203125, 8500.4814453125)})
-    Tw:Play()
-    task.wait(1.9)
-    
-    Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-    {CFrame = CFrame.new(-59.09392166137695, -357.79449462890625, 9483.427734375)})
-    Tw:Play()
-    task.wait(0.7)
-    
-    Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-    {CFrame = CFrame.new(-55.9123649597168, -357.9725646972656, 9490.365234375)})
-    Tw:Play()
-    task.wait(18.5) 
-    _G.AutoFarm = false
-    task.wait(1) 
-    _G.AutoFarm = true
-    end
-        end
-    
-    end)
-    
-    
-    
-    btns:Toggle("Auto-Farmยังไม่ได้ทําใหม่", autoFarmEnabledOnStart, function(autoFarmEnabledOnStart)
-                while shouldRun do
-                while true do -- ลูปแบบวนไม่รู้จบ
-                local TweenService = game:GetService("TweenService")
-                local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-                {CFrame = CFrame.new(-72.1803665, 93.0172119, 687.601196, -0.999440074, 0.00150631333, -0.0334255174, 8.50787529e-09, 0.998986125, 0.0450188294, 0.0334594399, 0.0449936241, -0.998426795)}):Play()
-                wait(0)
-                local Adfdf = Instance.new("BodyVelocity")
-            Adfdf.Name = "BodyClip"
-            Adfdf.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-            Adfdf.MaxForce = Vector3.new(100, 100, 100) * math.huge
-            Adfdf.Velocity = Vector3.new(0,0,0)
-                local TweenService = game:GetService("TweenService")
-                local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(19.5, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-                {CFrame = CFrame.new(-26.0942402, 102.713982, 8696.9834, 0.991173387, -0.0190039258, 0.131202593, -1.15081278e-08, 0.989672303, 0.143348306, -0.132571757, -0.142083034, 0.980936885)}):Play()
-                wait(19)
-                local TweenService = game:GetService("TweenService")
-                local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-                {CFrame = CFrame.new(-55.9123649597168, -357.9725646972656, 9490.365234375)}):Play()
-                wait(2.2)
-                local TweenService = game:GetService("TweenService")
-                local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0.3, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-                {CFrame = CFrame.new(-55.9123649597168, -357.9725646972656, 9490.365234375)}):Play()
-                wait(1)
-                wait(17.2)
-                end
-            end
-        end)
-        btns:Seperator()
-        btns:Button("Kill ใข้เวลาโปรบัค หรือกดปุ่ม del", function()
-            game.Players.LocalPlayer.Character:BreakJoints()
-            wait(5)
+        local Player = game.Players.LocalPlayer
+        local Mouse = Player:GetMouse()
         
-        DiscordLib:Notification("แจ้งเตือน", "okฉันฆ่าคุณละ", "โอ้วตกลง!")
+        
+        function GetCharacter()
+           return game.Players.LocalPlayer.Character
+        end
+        
+        function Teleport(pos)
+           local Char = GetCharacter()
+           if Char then
+               Char:MoveTo(pos)
+           end
+        end
+        
+        
+        UIS.InputBegan:Connect(function(input)
+           if input.UserInputType == Enum.UserInputType.MouseButton1 and UIS:IsKeyDown(Enum.KeyCode.LeftControl) then
+               Teleport(Mouse.Hit.p)
+           end
         end)
-    btns:Bind("Kill bind", Enum.KeyCode.Delete, function()
-            game.Players.LocalPlayer.Character:BreakJoints()
-            wait(5)
-            DiscordLib:Notification("แจ้งเตือน", "okฉันฆ่าคุณละ", "โอ้วตกลง!")
-        end)
-    local bnds = serv:Channel("🛠 ・ หน้าหลัก")
-    local sldr =
-    bnds:Slider(
-        "ความเร็ว",
-        0,
-        500,
-        16,
-        function(t)
-            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = t
+    end)
+
+    ---------------------------------------------(Server)------------------------------------------------
+    Tabs.Server:AddButton({
+        Title = "rejoin",
+        Description = "rejoin Server",
+        Callback = function()
+            Window:Dialog({
+                Title = "rejoin Server",
+                Content = "",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                            local TeleportService = game:GetService("TeleportService")
+                            local Players = game:GetService("Players")
+                            local LocalPlayer = Players.LocalPlayer
+                            
+                            local Rejoin = coroutine.create(function()
+                                local Success, ErrorMessage = pcall(function()
+                                    TeleportService:Teleport(game.PlaceId, LocalPlayer)
+                                end)
+                            
+                                if ErrorMessage and not Success then
+                                    warn(ErrorMessage)
+                                end
+                            end)
+                            
+                            coroutine.resume(Rejoin)
+                            end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled the dialog.")
+                        end
+                    }
+                }
+            })
         end
-    )
+    })
+
+    Tabs.Server:AddButton({
+        Title = "Server Hop",
+        Description = "Server Hop",
+        Callback = function()
+            Window:Dialog({
+                Title = "Server Hop",
+                Content = "",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                            local module = loadstring(game:HttpGet"https://raw.githubusercontent.com/LeoKholYt/roblox/main/lk_serverhop.lua")()
     
-    bnds:Button(
-        "รีเซ็ตความเร็ว",
-        function()
-            sldr:Change(16)
+                            module:Teleport(game.PlaceId)
+                            end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled the dialog.")
+                        end
+                    }
+                }
+            })
         end
-    )
-    local sldu =
-    bnds:Slider(
-        "กระโดดสูง",
-        0,
-        500,
-        50,
-        function(t)
-            game.Players.LocalPlayer.Character.Humanoid.JumpPower = t
+    })
+
+
+    ---------------------------------------------(tp)------------------------------------------------
+
+    Tabs.tp:AddButton({
+        Title = "tp Script",
+        Description = "Script by jarmon",
+        Callback = function()
+            Window:Dialog({
+                Title = "tp Script?",
+                Content = "",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                            local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+                            local Window = Library.CreateLib("Jarmon Hub by jarmon", "DarkTheme")
+                            local Tab = Window:NewTab("Player")
+                            local Section = Tab:NewSection("")
+                            Plr = {}
+                            for i,v in pairs(game:GetService("Players"):GetChildren()) do
+                                table.insert(Plr,v.Name) 
+                            end
+                            local drop = Section:NewDropdown("Select Player!", "Click To Select", Plr, function(t)
+                               PlayerTP = t
+                            end)
+                            Section:NewButton("Refresh Dropdown","Refresh Dropdown", function()
+                              drop:Refresh(Plr)
+                            end)
+                            local TweenService = game:GetService("TweenService")
+                            
+                            Section:NewButton("Click To Tween ", "", function()
+                              local Player = game.Players.LocalPlayer
+                              local Target = game.Players[PlayerTP]
+                              game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
+                              if Player and Target then
+                                local PlayerCharacter = Player.Character
+                                local TargetCharacter = Target.Character
+                                if PlayerCharacter and TargetCharacter then
+                                  local PlayerHumanoidRootPart = PlayerCharacter:FindFirstChild("HumanoidRootPart")
+                                  local TargetHumanoidRootPart = TargetCharacter:FindFirstChild("HumanoidRootPart")
+                                  if PlayerHumanoidRootPart and TargetHumanoidRootPart then
+                                    local TweenInfo = TweenInfo.new((PlayerHumanoidRootPart.Position - TargetHumanoidRootPart.Position).Magnitude / 100, Enum.EasingStyle.Linear)
+                                    local Goals = {CFrame = TargetHumanoidRootPart.CFrame}
+                                    _G.Tween = TweenService:Create(PlayerHumanoidRootPart, TweenInfo, Goals)
+                                    _G.Tween:Play()
+                                  end
+                                end
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
+                              end
+                            end)
+                            Section:NewToggle("Auto Tween", "", function(t)
+                              _G.TweenPlayer = t
+                              game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
+                              while _G.TweenPlayer do wait()
+                                local Player = game.Players.LocalPlayer
+                                local Target = game.Players[PlayerTP]
+                                if Player and Target then
+                                  local PlayerCharacter = Player.Character
+                                  local TargetCharacter = Target.Character
+                                  if PlayerCharacter and TargetCharacter then
+                                    local PlayerHumanoidRootPart = PlayerCharacter:FindFirstChild("HumanoidRootPart")
+                                    local TargetHumanoidRootPart = TargetCharacter:FindFirstChild("HumanoidRootPart")
+                                    if PlayerHumanoidRootPart and TargetHumanoidRootPart then
+                                      local TweenInfo = TweenInfo.new((PlayerHumanoidRootPart.Position - TargetHumanoidRootPart.Position).Magnitude / 100, Enum.EasingStyle.Linear)
+                                      local Goals = {CFrame = TargetHumanoidRootPart.CFrame}
+                                      _G.Tween = TweenService:Create(PlayerHumanoidRootPart, TweenInfo, Goals)
+                                      _G.Tween:Play()
+                                      _G.Tween.Completed:Wait() -- Wait for the tween to complete
+                                    end
+                                  end
+                                end
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
+                              end
+                            end)
+                            Section:NewButton("de Tween ", "", function()
+                              if _G.Tween then
+                                _G.Tween:Cancel()
+                              end
+                            end)
+                            Section:NewButton("Click To tp ", "", function()
+                              game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[PlayerTP].Character.HumanoidRootPart.CFrame
+                            end)
+                            Section:NewToggle("Auto  Tp", "", function(t)
+                            _G.TPPlayer = t
+                            while _G.TPPlayer do wait()
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[PlayerTP].Character.HumanoidRootPart.CFrame
+                            end
+                            end)
+                            
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[PlayerTP].Character.HumanoidRootPart.CFrame
+                            
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            Dropdown:Refresh(Plr)
+                        end
+                    }
+                }
+            })
         end
-    )
+    })
+    ---------------------------------------------(tpcolor)------------------------------------------------
+
+
+    Tabs.tpcolor:AddButton({
+        Title = "WhiteZone",
+        Description = "Teleported To WhiteZone",
+        Callback = function()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-57.50128173828125, -9.701340675354004, -612.9971923828125)
+        end
+    })
+    Tabs.tpcolor:AddButton({
+        Title = "BlackZone",
+        Description = "Teleported To BlackZone",
+        Callback = function()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-576.3949584960938, -9.701340675354004, -121.22904968261719)
+        end
+    })
+    Tabs.tpcolor:AddButton({
+        Title = "blueZone",
+        Description = "Teleported To Really blueZone",
+        Callback = function()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(459.7375793457031, -9.701340675354004, 347.0867004394531)
+        end
+    })
+    Tabs.tpcolor:AddButton({
+        Title = "CamoZone",
+        Description = "Teleported To CamoZone",
+        Callback = function()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-576.4089965820312, -9.701340675354004, 241.1985321044922)
+        end
+    })
+    Tabs.tpcolor:AddButton({
+        Title = "MagentaZone",
+        Description = "Teleported To MagentaZone",
+        Callback = function()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(469.2639465332031, -9.701340675354004, 677.0164794921875)
+        end
+    })
+    Tabs.tpcolor:AddButton({
+        Title = "redZone",
+        Description = "Teleported To redZone",
+        Callback = function()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(488.9206237792969, -9.701340675354004, -72.02716827392578)
+        end
+    })
+    Tabs.tpcolor:AddButton({
+        Title = "YellerZone",
+        Description = "Teleported To Really YellerZone",
+        Callback = function()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-565.3948974609375, -9.701489448547363, 681.999755859375)
+        end
+    })
+
+---------------------------------------------(ศึกษาui)------------------------------------------------
+    Tabs.test:AddParagraph({
+        Title = "Paragraph",
+        Content = "This is a paragraph.\nSecond line!"
+    })
+
+
+
+    Tabs.test:AddButton({
+        Title = "Button",
+        Description = "Very important button",
+        Callback = function()
+            Window:Dialog({
+                Title = "Title",
+                Content = "This is a dialog",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                            print("Confirmed the dialog.")
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled the dialog.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+
+
+    local Toggle = Tabs.test:AddToggle("MyToggle", {Title = "Toggle", Default = false })
+
+    Toggle:OnChanged(function()
+        print("Toggle changed:", Options.MyToggle.Value)
+    end)
+
+    Options.MyToggle:SetValue(false)
+
+
     
-    bnds:Button(
-        "รีเซ็ตความสูงเมื่อกระโดด",
-        function()
-            sldu:Change(50)
+    local Slider = Tabs.test:AddSlider("Slider", {
+        Title = "Slider",
+        Description = "This is a slider",
+        Default = 2,
+        Min = 0,
+        Max = 5,
+        Rounding = 1,
+        Callback = function(Value)
+            print("Slider was changed:", Value)
         end
-    )
+    })
+
+    Slider:OnChanged(function(Value)
+        print("Slider changed:", Value)
+    end)
+
+    Slider:SetValue(3)
+
+
+
+    local Dropdown = Tabs.test:AddDropdown("Dropdown", {
+        Title = "Dropdown",
+        Values = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"},
+        Multi = false,
+        Default = 1,
+    })
+
+    Dropdown:SetValue("four")
+
+    Dropdown:OnChanged(function(Value)
+        print("Dropdown changed:", Value)
+    end)
+
+
     
-    
-    bnds:Toggle(
-        "กระโดดไม่จํากัด",
-        true,
-        function(bool)
-            if bool == true then
-            local InfiniteJumpEnabled = true
-            game:GetService("UserInputService").JumpRequest:connect(function()
-                if InfiniteJumpEnabled then
-                    game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
-                
-                else
-                    local InfiniteJumpEnabled = false
-                end
-            end)
-         end
+    local MultiDropdown = Tabs.test:AddDropdown("MultiDropdown", {
+        Title = "Dropdown",
+        Description = "You can select multiple values.",
+        Values = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"},
+        Multi = true,
+        Default = {"seven", "twelve"},
+    })
+
+    MultiDropdown:SetValue({
+        three = true,
+        five = true,
+        seven = false
+    })
+
+    MultiDropdown:OnChanged(function(Value)
+        local Values = {}
+        for Value, State in next, Value do
+            table.insert(Values, Value)
         end
-    )
-    bnds:Toggle(
-        "คอนโทน+คลิก = วาป",
-        false,
-        function(ori)
-            local UIS = game:GetService("UserInputService")
-    
-            local Player = game.Players.LocalPlayer
-            local Mouse = Player:GetMouse()
-            
-            
-            function GetCharacter()
-               return game.Players.LocalPlayer.Character
-            end
-            
-            function Teleport(pos)
-               local Char = GetCharacter()
-               if Char then
-                   Char:MoveTo(pos)
-               end
-            end
-            
-            
-            UIS.InputBegan:Connect(function(input)
-               if input.UserInputType == Enum.UserInputType.MouseButton1 and UIS:IsKeyDown(Enum.KeyCode.LeftControl) then
-                   Teleport(Mouse.Hit.p)
-               end
-            end)
-        end
-    )
-    
-    bnds:Toggle(
-        "นิ่ง",
-        false,
-        function(Value)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = Value
-        end
-    )
-    bnds:Button(
-        "แสงและเงา",
-        function()
-            local a = game.Lighting
-            a.Ambient = Color3.fromRGB(33, 33, 33)
-            a.Brightness = 6.67
-            a.ColorShift_Bottom = Color3.fromRGB(0, 0, 0)
-            a.ColorShift_Top = Color3.fromRGB(255, 247, 237)
-            a.EnvironmentDiffuseScale = 0.105
-            a.EnvironmentSpecularScale = 0.522
-            a.GlobalShadows = true
-            a.OutdoorAmbient = Color3.fromRGB(51, 54, 67)
-            a.ShadowSoftness = 0.04
-            a.GeographicLatitude = -15.525
-            a.ExposureCompensation = 0.75
-            local b = Instance.new("BloomEffect", a)
-            b.Enabled = true
-            b.Intensity = 0.04
-            b.Size = 1900
-            b.Threshold = 0.915
-            local c = Instance.new("ColorCorrectionEffect", a)
-            c.Brightness = 0.176
-            c.Contrast = 0.39
-            c.Enabled = true
-            c.Saturation = 0.2
-            c.TintColor = Color3.fromRGB(217, 145, 57)
-            if getgenv().mode == "Summer" then
-               c.TintColor = Color3.fromRGB(255, 220, 148)
-            elseif getgenv().mode == "Autumn" then
-               c.TintColor = Color3.fromRGB(217, 145, 57)
-            else
-               warn("No mode selected!")
-               print("Please select a mode")
-               b:Destroy()
-               c:Destroy()
-            end
-            local d = Instance.new("DepthOfFieldEffect", a)
-            d.Enabled = true
-            d.FarIntensity = 0.077
-            d.FocusDistance = 21.54
-            d.InFocusRadius = 20.77
-            d.NearIntensity = 0.277
-            local e = Instance.new("ColorCorrectionEffect", a)
-            e.Brightness = 0
-            e.Contrast = -0.07
-            e.Saturation = 0
-            e.Enabled = true
-            e.TintColor = Color3.fromRGB(255, 247, 239)
-            local e2 = Instance.new("ColorCorrectionEffect", a)
-            e2.Brightness = 0.2
-            e2.Contrast = 0.45
-            e2.Saturation = -0.1
-            e2.Enabled = true
-            e2.TintColor = Color3.fromRGB(255, 255, 255)
-            local s = Instance.new("SunRaysEffect", a)
-            s.Enabled = true
-            s.Intensity = 0.01
-            s.Spread = 0.146
-        end
-    )
-    local brns = serv:Channel("☁ ・ fps")
-    brns:Button(
-        "fps สูงสุด",
-        function()
-            setfpscap(1000)
-        end
-    )
-    btns:Seperator()
-    brns:Button(
-        "ภาพกาก v2",
-        function()
-            local decalsyeeted = true -- Leaving this on makes games look shitty but the fps goes up by at least 20.
-            local g = game
-            local w = g.Workspace
-            local l = g.Lighting
-            local t = w.Terrain
-            t.WaterWaveSize = 0
-            t.WaterWaveSpeed = 0
-            t.WaterReflectance = 0
-            t.WaterTransparency = 0
-            l.GlobalShadows = false
-            l.FogEnd = 9e9
-            l.Brightness = 0
-            settings().Rendering.QualityLevel = "Level01"
-            for i, v in pairs(g:GetDescendants()) do
-                if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
-                    v.Material = "Plastic"
-                    v.Reflectance = 0
-                elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
-                    v.Transparency = 1
-                elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
-                    v.Lifetime = NumberRange.new(0)
-                elseif v:IsA("Explosion") then
-                    v.BlastPressure = 1
-                    v.BlastRadius = 1
-                elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") then
-                    v.Enabled = false
-                elseif v:IsA("MeshPart") then
-                    v.Material = "Plastic"
-                    v.Reflectance = 0
-                    v.TextureID = 10385902758728957
-                end
-            end
-            for i, e in pairs(l:GetChildren()) do
-                if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
-                    e.Enabled = false
-                end
-            end
-        end
-    )
-    brns:Seperator()
-    brns:Button(
-        "ภาพกาก v1",
-        function()
-            _G.Settings = {
-                Players = {
-                    ["Ignore Me"] = true, -- Ignore your Character
-                    ["Ignore Others"] = true -- Ignore other Characters
-                },
-                Meshes = {
-                    Destroy = false, -- Destroy Meshes
-                    LowDetail = true -- Low detail meshes (NOT SURE IT DOES ANYTHING)
-                },
-                Images = {
-                    Invisible = true, -- Invisible Images
-                    LowDetail = false, -- Low detail images (NOT SURE IT DOES ANYTHING)
-                    Destroy = false, -- Destroy Images
-                },
-                ["No Particles"] = true, -- Disables all ParticleEmitter, Trail, Smoke, Fire and Sparkles
-                ["No Camera Effects"] = true, -- Disables all PostEffect's (Camera/Lighting Effects)
-                ["No Explosions"] = true, -- Makes Explosion's invisible
-                ["No Clothes"] = true, -- Removes Clothing from the game
-                ["Low Water Graphics"] = true, -- Removes Water Quality
-                ["No Shadows"] = true, -- Remove Shadows
-                ["Low Rendering"] = true, -- Lower Rendering
-                ["Low Quality Parts"] = true -- Lower quality parts
-            }
-            loadstring(game:HttpGet("https://pastebin.com/raw/g71kFyzH"))()
-        end
-    )
-    local unus = serv:Channel("🔁 ・ เซิร์ฟเวอร์")
-    
-    unus:Button(
-        "rejoin	",
-        function()
-    local TeleportService = game:GetService("TeleportService")
-    local Players = game:GetService("Players")
-    local LocalPlayer = Players.LocalPlayer
-    
-    local Rejoin = coroutine.create(function()
-        local Success, ErrorMessage = pcall(function()
-            TeleportService:Teleport(game.PlaceId, LocalPlayer)
-        end)
-    
-        if ErrorMessage and not Success then
-            warn(ErrorMessage)
-        end
+        print("Mutlidropdown changed:", table.concat(Values, ", "))
+    end)
+
+
+
+    local Colorpicker = Tabs.test:AddColorpicker("Colorpicker", {
+        Title = "Colorpicker",
+        Default = Color3.fromRGB(96, 205, 255)
+    })
+
+    Colorpicker:OnChanged(function()
+        print("Colorpicker changed:", Colorpicker.Value)
     end)
     
-    coroutine.resume(Rejoin)
+    Colorpicker:SetValueRGB(Color3.fromRGB(0, 255, 140))
+
+
+
+    local TColorpicker = Tabs.test:AddColorpicker("TransparencyColorpicker", {
+        Title = "Colorpicker",
+        Description = "but you can change the transparency.",
+        Transparency = 0,
+        Default = Color3.fromRGB(96, 205, 255)
+    })
+
+    TColorpicker:OnChanged(function()
+        print(
+            "TColorpicker changed:", TColorpicker.Value,
+            "Transparency:", TColorpicker.Transparency
+        )
+    end)
+
+
+
+    local Keybind = Tabs.test:AddKeybind("Keybind", {
+        Title = "KeyBind",
+        Mode = "Toggle", -- Always, Toggle, Hold
+        Default = "LeftControl", -- String as the name of the keybind (MB1, MB2 for mouse buttons)
+
+        -- Occurs when the keybind is clicked, Value is `true`/`false`
+        Callback = function(Value)
+            print("Keybind clicked!", Value)
+        end,
+
+        -- Occurs when the keybind itself is changed, `New` is a KeyCode Enum OR a UserInputType Enum
+        ChangedCallback = function(New)
+            print("Keybind changed!", New)
         end
-    )
-    unus:Button(
-        "Server Hop	",
-        function()
-            local module = loadstring(game:HttpGet"https://raw.githubusercontent.com/LeoKholYt/roblox/main/lk_serverhop.lua")()
-    
-            module:Teleport(game.PlaceId)
-        end
-    )
-    
-    local bnus = serv:Channel("⚔ ・ TP")
-    Plr = {}
-    for i,v in pairs(game:GetService("Players"):GetChildren()) do
-        table.insert(Plr,v.Name) 
-    end
-    
-    local drope =
-    bnus:Dropdown(
-        "เลือกผู้เล่น",
-        Plr,
-        function(t)
-            PlayerTP = t
-        end
-    )
-    bnus:Button(
-        "tp by jarmon",
-        function()
-            loadstring(game:HttpGet"https://raw.githubusercontent.com/jarmonxd/jarmonhubobf/main/tp-obf.lua")()
-        end
-    )
-    bnus:Button(
-        "Refresh",
-        function()
-            drope:Refresh(Plr)
-        end
-    )
-    bnus:Seperator()
-    bnus:Button(
-        "tp",
-        function()
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[PlayerTP].Character.HumanoidRootPart.CFrame
-    
-        end
-    )
-    bnus:Toggle(
-        "Auto tp",
-        false,
-        function(t)
-            _G.TPPlayer = t
-            while _G.TPPlayer do wait()
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[PlayerTP].Character.HumanoidRootPart.CFrame
+    })
+
+    -- OnClick is only fired when you press the keybind and the mode is Toggle
+    -- Otherwise, you will have to use Keybind:GetState()
+    Keybind:OnClick(function()
+        print("Keybind clicked:", Keybind:GetState())
+    end)
+
+    Keybind:OnChanged(function()
+        print("Keybind changed:", Keybind.Value)
+    end)
+
+    task.spawn(function()
+        while true do
+            wait(1)
+
+            -- example for checking if a keybind is being pressed
+            local state = Keybind:GetState()
+            if state then
+                print("Keybind is being held down")
             end
+
+            if Fluent.Unloaded then break end
         end
-    )
-    bnus:Button(
-        "Refresh มันบัคใช้ไม่ได้แนะนําให้ไปใช้ tp by jarmon นะ",
-        function()
-            loadstring(game:HttpGet"https://raw.githubusercontent.com/jarmonxd/jarmonhubobf/main/tp-obf.lua")()
+    end)
+
+    Keybind:SetValue("MB2", "Toggle") -- Sets keybind to MB2, mode to Hold
+
+
+    local Input = Tabs.test:AddInput("Input", {
+        Title = "Input",
+        Default = "Default",
+        Placeholder = "Placeholder",
+        Numeric = false, -- Only allows numbers
+        Finished = false, -- Only calls callback when you press enter
+        Callback = function(Value)
+            print("Input changed:", Value)
         end
-    )
-    bnus:Button(
-        "Refresh มันบัคใช้ไม่ได้แนะนําให้ไปใช้ tp by jarmon นะ",
-        function()
-            loadstring(game:HttpGet"https://raw.githubusercontent.com/jarmonxd/jarmonhubobf/main/tp-obf.lua")()
-        end
-    )
-    bnus:Button(
-        "Refresh มันบัคใช้ไม่ได้แนะนําให้ไปใช้ tp by jarmon นะ",
-        function()
-            loadstring(game:HttpGet"https://raw.githubusercontent.com/jarmonxd/jarmonhubobf/main/tp-obf.lua")()
-        end
-    )
-    bnus:Button(
-        "Refresh มันบัคใช้ไม่ได้แนะนําให้ไปใช้ tp by jarmon นะ",
-        function()
-            loadstring(game:HttpGet"https://raw.githubusercontent.com/jarmonxd/jarmonhubobf/main/tp-obf.lua")()
-        end
-    )
-    bnus:Button(
-        "Refresh มันบัคใช้ไม่ได้แนะนําให้ไปใช้ tp by jarmon นะ",
-        function()
-            drope:Refresh(Plr)
-        end
-    )
-    bnus:Button(
-        "Refresh มันบัคใช้ไม่ได้แนะนําให้ไปใช้ tp by jarmon นะ",
-        function()
-            drope:Refresh(Plr)
-        end
-    )
-    
-    
-    
-    serv:Channel("by jarmon_ff")
-    local ScreenGui = Instance.new("ScreenGui")
-    local ImageLabel = Instance.new("ImageLabel")
-    
-    --Properties:
-    
-    ScreenGui.Parent = game.CoreGui
-    ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-    
-    ImageLabel.Parent = ScreenGui
-    ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    ImageLabel.BorderSizePixel = 0
-    ImageLabel.Position = UDim2.new(0.127969354, 0, 0.257641912, 0)
-    ImageLabel.Size = UDim2.new(0, 971, 0, 487)
-    ImageLabel.Image = "rbxassetid://17003972177"
-    wait(4)
-    game.CoreGui:FindFirstChild("ScreenGui"):Destroy()
+    })
+
+    Input:OnChanged(function()
+        print("Input updated:", Input.Value)
+    end)
 end
+
+
+-- Addons:
+-- SaveManager (Allows you to have a configuration system)
+-- InterfaceManager (Allows you to have a interface managment system)
+
+-- Hand the library over to our managers
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+
+-- Ignore keys that are used by ThemeManager.
+-- (we dont want configs to save themes, do we?)
+SaveManager:IgnoreThemeSettings()
+
+-- You can add indexes of elements the save manager should ignore
+SaveManager:SetIgnoreIndexes({})
+
+-- use case for doing it this way:
+-- a script hub could have themes in a global folder
+-- and game configs in a separate folder per game
+InterfaceManager:SetFolder("FluentScriptHub")
+SaveManager:SetFolder("FluentScriptHub/specific-game")
+
+InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+SaveManager:BuildConfigSection(Tabs.Settings)
+
+
+Window:SelectTab(1)
+
+Fluent:Notify({
+    Title = "Fluent",
+    Content = "The script has been loaded.",
+    Duration = 8
+})
+
+-- You can use the SaveManager:LoadAutoloadConfig() to load a config
+-- which has been marked to be one that auto loads!
+SaveManager:LoadAutoloadConfig()
