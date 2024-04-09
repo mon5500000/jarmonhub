@@ -47,7 +47,9 @@ do
 
         ---------------------------------------------(Farm)------------------------------------------------
     
-
+        local config = {
+            autoFarm = false
+        }
         _G.AutoFarm = config.autoFarm
 
         local Toggle = Tabs.Farm:AddToggle("AutoFarm", {Title = "AutoFarm", Default = config.autoFarm })
