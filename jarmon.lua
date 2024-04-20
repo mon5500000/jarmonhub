@@ -28,7 +28,7 @@ local Options = Fluent.Options
 ---------------------------------------------(status)------------------------------------------------
 Tabs.status:AddParagraph({
     Title = " Last Updated 📅 ",
-    Content = "10/04/2024"
+    Content = "20/04/2024"
 })
 Tabs.status:AddParagraph({
     Title = " Coming Soon 🕘 ",
