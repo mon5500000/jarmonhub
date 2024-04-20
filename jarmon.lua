@@ -39,7 +39,7 @@ Tabs.status:AddParagraph({
 
 Tabs.script:AddButton({
     Title = "lk hub",
-    Description = "F วิ่งไว มีเก็ตคีย์",
+    Description = "F วิ่งไว มีเก็ตคีย์ Not support RO-EXEC",
     Callback = function()
         loadstring(game:HttpGet("https://lkhub.net/s/loader.lua"))()
     end
