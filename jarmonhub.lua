@@ -1,453 +1,345 @@
+if game.PlaceId ~= 537413528 then
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/jarmonxd/jarmonhubobf/main/jarmon.lua'))()
+else
+    -- Your code here
+
+
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+local VirtualUser = game:GetService('VirtualUser')
+local Players = game:GetService("Players")
+
+local function antiAfk()
+    while wait(60) do -- ทำซ้ำทุกๆ 60 วินาที (ปรับเวลาได้)
+        VirtualUser:CaptureController()
+        VirtualUser:ClickButton2(Vector2.new()) -- การกระทำป้องกัน AFK
+    end
+end
+-- เชื่อมต่อกับเหตุการณ์ 'Idled'
+local player = Players.LocalPlayer
+player.Idled:connect(antiAfk)
 
 local Window = Fluent:CreateWindow({
-    Title = "Jarmon Hub (beta test)",
-    SubTitle = "All map",
+    Title = "Build A Boat For Treasure - Jarmon Hub V1",
+    SubTitle = "Free Script",
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
-    Acrylic = false, -- The blur may be detectable, setting this to false disables blur entirely
-    Theme = "Aqua",
-    MinimizeKey = Enum.KeyCode.Delete -- Used when theres no MinimizeKeybind
+    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
+    Theme = "Amethyst",
+    MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 })
 
 --Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
 local Tabs = {
-    status = Window:AddTab({ Title = "status", Icon = "loader" }),
-    script = Window:AddTab({ Title = "script", Icon = "folder" }),
-    home = Window:AddTab({ Title = "Home", Icon = "home" }),
-    graphics = Window:AddTab({ Title = "GRAPHIC", Icon = "monitor" }),
+    status = Window:AddTab({ Title = "status", Icon = "bar-chart-2" }),
+    Farm = Window:AddTab({ Title = "Farm", Icon = "flag-triangle-right" }),
+    Main = Window:AddTab({ Title = "Main", Icon = "home" }),
     Server = Window:AddTab({ Title = "Server", Icon = "network" }),
-    Main = Window:AddTab({ Title = "test", Icon = "user-cog" }),
-    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+    tp = Window:AddTab({ Title = "teleport", Icon = "send" }),
+    tpcolor = Window:AddTab({ Title = "teleportcolor", Icon = "swords" }),
+    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" }),
+    test = Window:AddTab({ Title = "test", Icon = "party-popper" }),
 }
 
 local Options = Fluent.Options
-
 ---------------------------------------------(status)------------------------------------------------
-Tabs.status:AddParagraph({
-    Title = " Last Updated 📅 ",
-    Content = "20/04/2024"
-})
-Tabs.status:AddParagraph({
-    Title = " Coming Soon 🕘 ",
-    Content = "เราจะเปิดให้ใช้งานเร็วๆนี้ครับ"
-})
+do
+    Fluent:Notify({
+        Title = "เรายังทํายังไม่เสร็จ",
+        Content = "ระวังโปรนอนอ้วนด้วยหละ",
+        SubContent = "ขอตัวไปศึกษาการทําโปรก่อนน้าา", -- Optional
+        Duration = 5 -- Set to nil to make the notification not disappear
+    })
 
----------------------------------------------(script)------------------------------------------------
+    Tabs.status:AddParagraph({
+        Title = " Last Updated 📅 ",
+        Content = "1/04/2024"
+    })
+    Tabs.status:AddParagraph({
+        Title = " Coming Soon 🕘 ",
+        Content = "เราจะเปิดให้ใช้งานเร็วๆนี้ครับ"
+    })
 
-Tabs.script:AddButton({
-    Title = "lk hub",
-    Description = "F วิ่งไว มีเก็ตคีย์ Not support RO-EXEC",
-    Callback = function()
-        loadstring(game:HttpGet("https://lkhub.net/s/loader.lua"))()
-    end
-})
-Tabs.script:AddButton({
-    Title = "antiAfk",
-    Description = "afk ได้ไม่หลุด",
-    Callback = function()
-        local VirtualUser = game:GetService('VirtualUser')
-        local Players = game:GetService("Players")
+
+
+        ---------------------------------------------(Farm)------------------------------------------------
+    
+        local config = {
+            autoFarm = false
+        }
+        _G.AutoFarm = config.autoFarm
+
+        local Toggle = Tabs.Farm:AddToggle("AutoFarm", {Title = "AutoFarm", Default = config.autoFarm })
+
+        Toggle:OnChanged(function(Value)
+            while Value do -- This creates the infinite loop 
+
+                local Adfdf = Instance.new("BodyVelocity")
+                Adfdf.Name = "BodyClip"
+                Adfdf.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+                Adfdf.MaxForce = Vector3.new(100, 100, 100) * math.huge
+                Adfdf.Velocity = Vector3.new(0,0,0)
+                local TweenService = game:GetService("TweenService")
+                local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+                {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage1.Sand.CFrame + Vector3.new(0, 70, 0)})
+        Tw:Play()
+        task.wait(1.8)
+        local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+        {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage2.Sand.CFrame + Vector3.new(0, 80, 0)})
+        Tw:Play()
+        task.wait(1.9)
+        Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+        {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage3.Sand.CFrame + Vector3.new(0, 80, 0)})
+        Tw:Play()
+        task.wait(1.9)
+        Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+        {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage4.Sand.CFrame + Vector3.new(0, 80, 0)})
+        Tw:Play()
+        task.wait(1.9)
+        Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+        {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage5.Sand.CFrame + Vector3.new(0, 80, 0)})
+        Tw:Play()
+        task.wait(1.9)
+        Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+        {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage6.Sand.CFrame + Vector3.new(0, 80, 0)})
+        Tw:Play()
+        task.wait(1.9)
         
-        local function antiAfk()
-            while wait(60) do -- ทำซ้ำทุกๆ 60 วินาที (ปรับเวลาได้)
-                VirtualUser:CaptureController()
-                VirtualUser:ClickButton2(Vector2.new()) -- การกระทำป้องกัน AFK
+        Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+        {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage7.Sand.CFrame + Vector3.new(0, 80, 0)})
+        Tw:Play()
+        task.wait(1.9)
+        
+        Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+        {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage8.Sand.CFrame + Vector3.new(0, 80, 0)})
+        Tw:Play()
+        task.wait(1.9)
+        
+        Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+        {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage9.Sand.CFrame + Vector3.new(0, 80, 0)})
+        Tw:Play()
+        task.wait(1.9)
+        
+        Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+        {CFrame = CFrame.new(-59.152435302734375, 95.01837158203125, 8500.4814453125)})
+        Tw:Play()
+        task.wait(1.9)
+        
+        Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+        {CFrame = CFrame.new(-59.09392166137695, -357.79449462890625, 9483.427734375)})
+        Tw:Play()
+        task.wait(0.7)
+        
+        Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+        {CFrame = CFrame.new(-55.9123649597168, -357.9725646972656, 9490.365234375)})
+        Tw:Play()
+        task.wait(18) 
+        config.autoFarm = false
+        task.wait(1) 
+        config.autoFarm = true
+        end
+
+        end)
+
+        Toggle:SetValue(config.autoFarm)
+
+
+        Tabs.Farm:AddParagraph({
+            Title = "test",
+            Content = "test\ntest"
+        })
+    
+        Tabs.Farm:AddButton({
+            Title = "Enable Autofarm",
+            Description = "Very Enable Autofarm",
+            Callback = function()
+                getgenv().TreasureAutoFarm = {
+                    Enabled = true, -- // Toggle the auto farm on and off
+                    Teleport = 2, -- // How fast between each teleport between the stages and stuff
+                    TimeBetweenRuns = 5 -- // How long to wait until it goes to the next run
+                }
+                
+                -- // Services
+                local Players = game:GetService("Players")
+                local Workspace = game:GetService("Workspace")
+                local Lighting = game:GetService("Lighting")
+                
+                -- // Vars
+                local LocalPlayer = Players.LocalPlayer
+                
+                -- // Goes through all of the stages
+                local autoFarm = function(currentRun)
+                    -- // Variables
+                    local Character = LocalPlayer.Character
+                    local NormalStages = Workspace.BoatStages.NormalStages
+                
+                    -- // Go to each stage thing
+                    for i = 1, 10 do
+                        local Stage = NormalStages["CaveStage" .. i]
+                        local DarknessPart = Stage:FindFirstChild("DarknessPart")
+                
+                        if (DarknessPart) then
+                            -- // Teleport to next stage
+                            print("Teleporting to next stage: Stage " .. i)
+                            Character.HumanoidRootPart.CFrame = DarknessPart.CFrame
+                
+                            -- // Create a temp part under you
+                            local Part = Instance.new("Part", LocalPlayer.Character)
+                            Part.Anchored = true
+                            Part.Position = LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0, 6, 0)
+                
+                            -- // Wait and remove temp part
+                            wait(getgenv().TreasureAutoFarm.Teleport)
+                            Part:Destroy()
+                        end
+                    end
+                
+                    -- // Go to end
+                    print("Teleporting to the end")
+                    repeat wait()
+                        Character.HumanoidRootPart.CFrame = NormalStages.TheEnd.GoldenChest.Trigger.CFrame
+                    until Lighting.ClockTime ~= 14
+                
+                    -- // Wait until you have respawned
+                    local Respawned = false
+                    local Connection
+                    Connection = LocalPlayer.CharacterAdded:Connect(function()
+                        Respawned = true
+                        Connection:Disconnect()
+                    end)
+                
+                    repeat wait() until Respawned
+                    wait(getgenv().TreasureAutoFarm.TimeBetweenRuns)
+                    print("Auto Farm: Run " .. currentRun .. " finished")
+                end
+                
+                -- // Whilst the autofarm is enable, constantly do it
+                local autoFarmRun = 1
+                while wait() do
+                    if (getgenv().TreasureAutoFarm.Enabled) then
+                        print("Initialising Auto Farm: Run " .. autoFarmRun)
+                        autoFarm(autoFarmRun)
+                        autoFarmRun = autoFarmRun + 1
+                    end
+                end
+                      end    
+                })
+
+                Tabs.Farm:AddButton({
+            Title = "Disable Autofarm",
+            Description = "",
+            Callback = function()
+                game.Players.LocalPlayer.Character:BreakJoints()
+
             end
-        end
-        -- เชื่อมต่อกับเหตุการณ์ 'Idled'
-        local player = Players.LocalPlayer
-        player.Idled:connect(antiAfk)
-    end
-})
-Tabs.script:AddButton({
-    Title = "tp by jarmon",
-    Description = "teleport to Players",
-    Callback = function()
-        loadstring(game:HttpGet"https://raw.githubusercontent.com/jarmonxd/jarmonhubobf/main/tp-obf.lua")()
-    end
-})
-Tabs.script:AddButton({
-    Title = "Admin Script",
-    Description = "Infinite Yield Admin",
-    Callback = function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
-    end
-})
-Tabs.script:AddButton({
-    Title = "หาค่าCF ",
-    Description = "หาค่าตําแหน่งของเรา (noob hub)",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/NOOBHUBX/Location/main/NOOB%20HUB.Lua"))() 
-        end
-})
-Tabs.script:AddButton({
-    Title = "Dex Explorer",
-    Description = "Dex Explorer ดี",
-    Callback = function()
-loadstring(game:HttpGet('https://ithinkimandrew.site/scripts/tools/dark-dex.lua'))()
-        end
-})
-Tabs.script:AddButton({
-    Title = "rspy",
-    Description = "SimpleSpy",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/78n/SimpleSpy/main/SimpleSpySource.lua"))()
-        end
-})
-Tabs.script:AddButton({
-    Title = "btools ",
-    Description = "อุปกรณ์ทําลายบล็อก",
-    Callback = function()
-        loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/BTools.txt"))()
-     end
-})
-Tabs.script:AddButton({
-    Title = "Dex Explorer ภาษาไทย",
-    Description = "Dex Explorer ภาษาไทย รันไว",
-    Callback = function()
-        loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Dex%20Explorer.txt"))()
-        end
-})
-
-
----------------------------------------------(Home)------------------------------------------------
-
-local Slider = Tabs.home:AddSlider("Slider", {
-    Title = "Speed",
-    Description = "Set your speed",
-    Default = 16,
-    Min = 5,
-    Max = 150,
-    Rounding = 1,
-    Callback = function(Value)
-game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
-    end
-})
-Slider:SetValue(16)
-Slider:OnChanged(function(Value)
-    print("Slider changed:", Value)
-end)
-Tabs.home:AddButton({
-    Title = "Reset Speed",
-    Description = "Setting the initial speed to 16.",
-    Callback = function()
-        Window:Dialog({
-            Title = "Reset Speed?",
-            Content = "",
-            Buttons = {
-                {
-                    Title = "Confirm",
-                    Callback = function()
-                        Slider:SetValue(16)
-                    end
-                },
-                {
-                    Title = "Cancel",
-                    Callback = function()
-                        print("Cancelled the dialog.")
-                    end
-                }
-            }
         })
-    end
-})
-local Toggle = Tabs.home:AddToggle("Infinitejump", {Title = "Infinite jump", Default = false })
 
-Toggle:OnChanged(function(Infinitejump)
-    local InfiniteJumpEnabled = Infinitejump
-    game:GetService("UserInputService").JumpRequest:connect(function()
-        if InfiniteJumpEnabled then
-            game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+    ---------------------------------------------(main)------------------------------------------------
+    local Slider = Tabs.Main:AddSlider("Slider", {
+        Title = "Speed",
+        Description = "Set your speed",
+        Default = 16,
+        Min = 5,
+        Max = 150,
+        Rounding = 1,
+        Callback = function(Value)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
         end
+    })
+    Slider:SetValue(16)
+    Slider:OnChanged(function(Value)
+        print("Slider changed:", Value)
     end)
-end)
-
-
-
-local Toggle = Tabs.home:AddToggle("Anchored", {Title = "Anchored", Default = false })
-
-Toggle:OnChanged(function(Value)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = Value
-end)
-
-
----------------------------------------------(graphics)------------------------------------------------
-Tabs.graphics:AddButton({
-    Title = "FullBright",
-    Description = "",
-    Callback = function()
-        Window:Dialog({
-            Title = "FullBright?",
-            Content = "ท่าอยากปิดให้ภาพมึดก็กด FullBright อีกรอบ",
-            Buttons = {
-                {
-                    Title = "Confirm",
-                    Callback = function()
-                        if not _G.FullBrightExecuted then
-
-                            _G.FullBrightEnabled = false
-                        
-                            _G.NormalLightingSettings = {
-                                Brightness = game:GetService("Lighting").Brightness,
-                                ClockTime = game:GetService("Lighting").ClockTime,
-                                FogEnd = game:GetService("Lighting").FogEnd,
-                                GlobalShadows = game:GetService("Lighting").GlobalShadows,
-                                Ambient = game:GetService("Lighting").Ambient
-                            }
-                        
-                            game:GetService("Lighting"):GetPropertyChangedSignal("Brightness"):Connect(function()
-                                if game:GetService("Lighting").Brightness ~= 1 and game:GetService("Lighting").Brightness ~= _G.NormalLightingSettings.Brightness then
-                                    _G.NormalLightingSettings.Brightness = game:GetService("Lighting").Brightness
-                                    if not _G.FullBrightEnabled then
-                                        repeat
-                                            wait()
-                                        until _G.FullBrightEnabled
-                                    end
-                                    game:GetService("Lighting").Brightness = 1
-                                end
-                            end)
-                        
-                            game:GetService("Lighting"):GetPropertyChangedSignal("ClockTime"):Connect(function()
-                                if game:GetService("Lighting").ClockTime ~= 12 and game:GetService("Lighting").ClockTime ~= _G.NormalLightingSettings.ClockTime then
-                                    _G.NormalLightingSettings.ClockTime = game:GetService("Lighting").ClockTime
-                                    if not _G.FullBrightEnabled then
-                                        repeat
-                                            wait()
-                                        until _G.FullBrightEnabled
-                                    end
-                                    game:GetService("Lighting").ClockTime = 12
-                                end
-                            end)
-                        
-                            game:GetService("Lighting"):GetPropertyChangedSignal("FogEnd"):Connect(function()
-                                if game:GetService("Lighting").FogEnd ~= 786543 and game:GetService("Lighting").FogEnd ~= _G.NormalLightingSettings.FogEnd then
-                                    _G.NormalLightingSettings.FogEnd = game:GetService("Lighting").FogEnd
-                                    if not _G.FullBrightEnabled then
-                                        repeat
-                                            wait()
-                                        until _G.FullBrightEnabled
-                                    end
-                                    game:GetService("Lighting").FogEnd = 786543
-                                end
-                            end)
-                        
-                            game:GetService("Lighting"):GetPropertyChangedSignal("GlobalShadows"):Connect(function()
-                                if game:GetService("Lighting").GlobalShadows ~= false and game:GetService("Lighting").GlobalShadows ~= _G.NormalLightingSettings.GlobalShadows then
-                                    _G.NormalLightingSettings.GlobalShadows = game:GetService("Lighting").GlobalShadows
-                                    if not _G.FullBrightEnabled then
-                                        repeat
-                                            wait()
-                                        until _G.FullBrightEnabled
-                                    end
-                                    game:GetService("Lighting").GlobalShadows = false
-                                end
-                            end)
-                        
-                            game:GetService("Lighting"):GetPropertyChangedSignal("Ambient"):Connect(function()
-                                if game:GetService("Lighting").Ambient ~= Color3.fromRGB(178, 178, 178) and game:GetService("Lighting").Ambient ~= _G.NormalLightingSettings.Ambient then
-                                    _G.NormalLightingSettings.Ambient = game:GetService("Lighting").Ambient
-                                    if not _G.FullBrightEnabled then
-                                        repeat
-                                            wait()
-                                        until _G.FullBrightEnabled
-                                    end
-                                    game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
-                                end
-                            end)
-                        
-                            game:GetService("Lighting").Brightness = 1
-                            game:GetService("Lighting").ClockTime = 12
-                            game:GetService("Lighting").FogEnd = 786543
-                            game:GetService("Lighting").GlobalShadows = false
-                            game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
-                        
-                            local LatestValue = true
-                            spawn(function()
-                                repeat
-                                    wait()
-                                until _G.FullBrightEnabled
-                                while wait() do
-                                    if _G.FullBrightEnabled ~= LatestValue then
-                                        if not _G.FullBrightEnabled then
-                                            game:GetService("Lighting").Brightness = _G.NormalLightingSettings.Brightness
-                                            game:GetService("Lighting").ClockTime = _G.NormalLightingSettings.ClockTime
-                                            game:GetService("Lighting").FogEnd = _G.NormalLightingSettings.FogEnd
-                                            game:GetService("Lighting").GlobalShadows = _G.NormalLightingSettings.GlobalShadows
-                                            game:GetService("Lighting").Ambient = _G.NormalLightingSettings.Ambient
-                                        else
-                                            game:GetService("Lighting").Brightness = 1
-                                            game:GetService("Lighting").ClockTime = 12
-                                            game:GetService("Lighting").FogEnd = 786543
-                                            game:GetService("Lighting").GlobalShadows = false
-                                            game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
-                                        end
-                                        LatestValue = not LatestValue
-                                    end
-                                end
-                            end)
+    Tabs.Main:AddButton({
+        Title = "Reset Speed",
+        Description = "Setting the initial speed to 16.",
+        Callback = function()
+            Window:Dialog({
+                Title = "Reset Speed?",
+                Content = "",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                            Slider:SetValue(16)
                         end
-                        
-                        _G.FullBrightExecuted = true
-                        _G.FullBrightEnabled = not _G.FullBrightEnabled
-                    end
-                },
-                {
-                    Title = "Cancel",
-                    Callback = function()
-                        print("Cancelled the dialog.")
-                    end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            print("Cancelled the dialog.")
+                        end
+                    }
                 }
-            }
-        })
-    end
-})
-Tabs.graphics:AddButton({
-    Title = "FPS Booster",
-    Description = "",
-    Callback = function()
-        Window:Dialog({
-            Title = "FPS Booster?",
-            Content = "ท่าเปิดแล้วจะปิดไม่ได้อยากปิดก็ต้องรีเซิฟ",
-            Buttons = {
-                {
-                    Title = "Confirm",
-                    Callback = function()
-                        local decalsyeeted = true -- Leaving this on makes games look shitty but the fps goes up by at least 20.
-                        local g = game
-                        local w = g.Workspace
-                        local l = g.Lighting
-                        local t = w.Terrain
-                        t.WaterWaveSize = 0
-                        t.WaterWaveSpeed = 0
-                        t.WaterReflectance = 0
-                        t.WaterTransparency = 0
-                        l.GlobalShadows = false
-                        l.FogEnd = 9e9
-                        l.Brightness = 0
-                        settings().Rendering.QualityLevel = "Level01"
-                        for i, v in pairs(g:GetDescendants()) do
-                            if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
-                                v.Material = "Plastic"
-                                v.Reflectance = 0
-                            elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
-                                v.Transparency = 1
-                            elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
-                                v.Lifetime = NumberRange.new(0)
-                            elseif v:IsA("Explosion") then
-                                v.BlastPressure = 1
-                                v.BlastRadius = 1
-                            elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") then
-                                v.Enabled = false
-                            elseif v:IsA("MeshPart") then
-                                v.Material = "Plastic"
-                                v.Reflectance = 0
-                                v.TextureID = 10385902758728957
-                            end
-                        end
-                        for i, e in pairs(l:GetChildren()) do
-                            if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
-                                e.Enabled = false
-                            end
-                        end
-                    end
-                },
-                {
-                    Title = "Cancel",
-                    Callback = function()
-                        print("Cancelled the dialog.")
-                    end
-                }
-            }
-        })
-    end
-})
+            })
+        end
+    })
+    local Slider = Tabs.Main:AddSlider("Slider", {
+        Title = "JumpPower",
+        Description = "",
+        Default = 50,
+        Min = 5,
+        Max = 150,
+        Rounding = 1,
+        Callback = function(Value)
+            game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+        end
+    })
+    local Toggle = Tabs.Main:AddToggle("Anchored", {Title = "Anchored", Default = false })
 
-Tabs.graphics:AddButton({
-    Title = "RTX ON",
-    Description = "",
-    Callback = function()
-        Window:Dialog({
-            Title = "",
-            Content = "",
-            Buttons = {
-                {
-                    Title = "Confirm",
-                    Callback = function()
-                        local a = game.Lighting
-                        a.Ambient = Color3.fromRGB(33, 33, 33)
-                        a.Brightness = 6.67
-                        a.ColorShift_Bottom = Color3.fromRGB(0, 0, 0)
-                        a.ColorShift_Top = Color3.fromRGB(255, 247, 237)
-                        a.EnvironmentDiffuseScale = 0.105
-                        a.EnvironmentSpecularScale = 0.522
-                        a.GlobalShadows = true
-                        a.OutdoorAmbient = Color3.fromRGB(51, 54, 67)
-                        a.ShadowSoftness = 0.04
-                        a.GeographicLatitude = -15.525
-                        a.ExposureCompensation = 0.75
-                        local b = Instance.new("BloomEffect", a)
-                        b.Enabled = true
-                        b.Intensity = 0.04
-                        b.Size = 1900
-                        b.Threshold = 0.915
-                        local c = Instance.new("ColorCorrectionEffect", a)
-                        c.Brightness = 0.176
-                        c.Contrast = 0.39
-                        c.Enabled = true
-                        c.Saturation = 0.2
-                        c.TintColor = Color3.fromRGB(217, 145, 57)
-                        if getgenv().mode == "Summer" then
-                           c.TintColor = Color3.fromRGB(255, 220, 148)
-                        elseif getgenv().mode == "Autumn" then
-                           c.TintColor = Color3.fromRGB(217, 145, 57)
-                        else
-                           warn("No mode selected!")
-                           print("Please select a mode")
-                           b:Destroy()
-                           c:Destroy()
-                        end
-                        local d = Instance.new("DepthOfFieldEffect", a)
-                        d.Enabled = true
-                        d.FarIntensity = 0.077
-                        d.FocusDistance = 21.54
-                        d.InFocusRadius = 20.77
-                        d.NearIntensity = 0.277
-                        local e = Instance.new("ColorCorrectionEffect", a)
-                        e.Brightness = 0
-                        e.Contrast = -0.07
-                        e.Saturation = 0
-                        e.Enabled = true
-                        e.TintColor = Color3.fromRGB(255, 247, 239)
-                        local e2 = Instance.new("ColorCorrectionEffect", a)
-                        e2.Brightness = 0.2
-                        e2.Contrast = 0.45
-                        e2.Saturation = -0.1
-                        e2.Enabled = true
-                        e2.TintColor = Color3.fromRGB(255, 255, 255)
-                        local s = Instance.new("SunRaysEffect", a)
-                        s.Enabled = true
-                        s.Intensity = 0.01
-                        s.Spread = 0.146
-                    end
-                },
-                {
-                    Title = "Cancel",
-                    Callback = function()
-                        print("Cancelled the dialog.")
-                    end
-                }
-            }
-        })
-    end
-})
+    Toggle:OnChanged(function(Value)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = Value
+    end)
+    Tabs.Main:AddParagraph({
+        Title = "The Toggle at the bottom is open and cannot be closed.",
+        Content = ""
+    })
 
+    local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Infinite Jump", Default = false })
 
+    Toggle:OnChanged(function(bool)
+        if bool == true then
+            local InfiniteJumpEnabled = true
+            game:GetService("UserInputService").JumpRequest:connect(function()
+                if InfiniteJumpEnabled then
+                    game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+                
+                else
+            InfiniteJumpEnabled = false
+                end
+            end)
+         end
+    end)
+    local Toggle = Tabs.Main:AddToggle("Ctrl+Click=tp", {Title = "Ctrl + Click = tp", Default = false })
 
----------------------------------------------(Server)------------------------------------------------
+    Toggle:OnChanged(function(Valued)
+        local UIS = game:GetService("UserInputService")
+    
+        local Player = game.Players.LocalPlayer
+        local Mouse = Player:GetMouse()
+        
+        
+        function GetCharacter()
+           return game.Players.LocalPlayer.Character
+        end
+        
+        function Teleport(pos)
+           local Char = GetCharacter()
+           if Char then
+               Char:MoveTo(pos)
+           end
+        end
+        
+        
+        UIS.InputBegan:Connect(function(input)
+           if input.UserInputType == Enum.UserInputType.MouseButton1 and UIS:IsKeyDown(Enum.KeyCode.LeftControl) then
+               Teleport(Mouse.Hit.p)
+           end
+        end)
+    end)
 
+    ---------------------------------------------(Server)------------------------------------------------
     Tabs.Server:AddButton({
         Title = "rejoin",
         Description = "rejoin Server",
@@ -515,37 +407,170 @@ Tabs.graphics:AddButton({
     })
 
 
+    ---------------------------------------------(tp)------------------------------------------------
+
+    Tabs.tp:AddButton({
+        Title = "tp Script",
+        Description = "Script by jarmon",
+        Callback = function()
+            Window:Dialog({
+                Title = "tp Script?",
+                Content = "",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                            local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+                            local Window = Library.CreateLib("Jarmon Hub by jarmon", "DarkTheme")
+                            local Tab = Window:NewTab("Player")
+                            local Section = Tab:NewSection("")
+                            Plr = {}
+                            for i,v in pairs(game:GetService("Players"):GetChildren()) do
+                                table.insert(Plr,v.Name) 
+                            end
+                            local drop = Section:NewDropdown("Select Player!", "Click To Select", Plr, function(t)
+                               PlayerTP = t
+                            end)
+                            Section:NewButton("Refresh Dropdown","Refresh Dropdown", function()
+                              drop:Refresh(Plr)
+                            end)
+                            local TweenService = game:GetService("TweenService")
+                            
+                            Section:NewButton("Click To Tween ", "", function()
+                              local Player = game.Players.LocalPlayer
+                              local Target = game.Players[PlayerTP]
+                              game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
+                              if Player and Target then
+                                local PlayerCharacter = Player.Character
+                                local TargetCharacter = Target.Character
+                                if PlayerCharacter and TargetCharacter then
+                                  local PlayerHumanoidRootPart = PlayerCharacter:FindFirstChild("HumanoidRootPart")
+                                  local TargetHumanoidRootPart = TargetCharacter:FindFirstChild("HumanoidRootPart")
+                                  if PlayerHumanoidRootPart and TargetHumanoidRootPart then
+                                    local TweenInfo = TweenInfo.new((PlayerHumanoidRootPart.Position - TargetHumanoidRootPart.Position).Magnitude / 100, Enum.EasingStyle.Linear)
+                                    local Goals = {CFrame = TargetHumanoidRootPart.CFrame}
+                                    _G.Tween = TweenService:Create(PlayerHumanoidRootPart, TweenInfo, Goals)
+                                    _G.Tween:Play()
+                                  end
+                                end
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
+                              end
+                            end)
+                            Section:NewToggle("Auto Tween", "", function(t)
+                              _G.TweenPlayer = t
+                              game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
+                              while _G.TweenPlayer do wait()
+                                local Player = game.Players.LocalPlayer
+                                local Target = game.Players[PlayerTP]
+                                if Player and Target then
+                                  local PlayerCharacter = Player.Character
+                                  local TargetCharacter = Target.Character
+                                  if PlayerCharacter and TargetCharacter then
+                                    local PlayerHumanoidRootPart = PlayerCharacter:FindFirstChild("HumanoidRootPart")
+                                    local TargetHumanoidRootPart = TargetCharacter:FindFirstChild("HumanoidRootPart")
+                                    if PlayerHumanoidRootPart and TargetHumanoidRootPart then
+                                      local TweenInfo = TweenInfo.new((PlayerHumanoidRootPart.Position - TargetHumanoidRootPart.Position).Magnitude / 100, Enum.EasingStyle.Linear)
+                                      local Goals = {CFrame = TargetHumanoidRootPart.CFrame}
+                                      _G.Tween = TweenService:Create(PlayerHumanoidRootPart, TweenInfo, Goals)
+                                      _G.Tween:Play()
+                                      _G.Tween.Completed:Wait() -- Wait for the tween to complete
+                                    end
+                                  end
+                                end
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
+                              end
+                            end)
+                            Section:NewButton("de Tween ", "", function()
+                              if _G.Tween then
+                                _G.Tween:Cancel()
+                              end
+                            end)
+                            Section:NewButton("Click To tp ", "", function()
+                              game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[PlayerTP].Character.HumanoidRootPart.CFrame
+                            end)
+                            Section:NewToggle("Auto  Tp", "", function(t)
+                            _G.TPPlayer = t
+                            while _G.TPPlayer do wait()
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[PlayerTP].Character.HumanoidRootPart.CFrame
+                            end
+                            end)
+                            
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[PlayerTP].Character.HumanoidRootPart.CFrame
+                            
+                        end
+                    },
+                    {
+                        Title = "Cancel",
+                        Callback = function()
+                            Dropdown:Refresh(Plr)
+                        end
+                    }
+                }
+            })
+        end
+    })
+    ---------------------------------------------(tpcolor)------------------------------------------------
 
 
-
-
-
-
-
-
-
-
-
-
-----------------------------------------------
-do
-    Fluent:Notify({
-        Title = "Notification",
-        Content = "This is a notification",
-        SubContent = "SubContent", -- Optional
-        Duration = 5 -- Set to nil to make the notification not disappear
+    Tabs.tpcolor:AddButton({
+        Title = "WhiteZone",
+        Description = "Teleported To WhiteZone",
+        Callback = function()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-57.50128173828125, -9.701340675354004, -612.9971923828125)
+        end
+    })
+    Tabs.tpcolor:AddButton({
+        Title = "BlackZone",
+        Description = "Teleported To BlackZone",
+        Callback = function()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-576.3949584960938, -9.701340675354004, -121.22904968261719)
+        end
+    })
+    Tabs.tpcolor:AddButton({
+        Title = "blueZone",
+        Description = "Teleported To Really blueZone",
+        Callback = function()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(459.7375793457031, -9.701340675354004, 347.0867004394531)
+        end
+    })
+    Tabs.tpcolor:AddButton({
+        Title = "CamoZone",
+        Description = "Teleported To CamoZone",
+        Callback = function()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-576.4089965820312, -9.701340675354004, 241.1985321044922)
+        end
+    })
+    Tabs.tpcolor:AddButton({
+        Title = "MagentaZone",
+        Description = "Teleported To MagentaZone",
+        Callback = function()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(469.2639465332031, -9.701340675354004, 677.0164794921875)
+        end
+    })
+    Tabs.tpcolor:AddButton({
+        Title = "redZone",
+        Description = "Teleported To redZone",
+        Callback = function()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(488.9206237792969, -9.701340675354004, -72.02716827392578)
+        end
+    })
+    Tabs.tpcolor:AddButton({
+        Title = "YellerZone",
+        Description = "Teleported To Really YellerZone",
+        Callback = function()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-565.3948974609375, -9.701489448547363, 681.999755859375)
+        end
     })
 
-
-
-    Tabs.Main:AddParagraph({
+---------------------------------------------(ศึกษาui)------------------------------------------------
+    Tabs.test:AddParagraph({
         Title = "Paragraph",
         Content = "This is a paragraph.\nSecond line!"
     })
 
 
 
-    Tabs.Main:AddButton({
+    Tabs.test:AddButton({
         Title = "Button",
         Description = "Very important button",
         Callback = function()
@@ -572,7 +597,7 @@ do
 
 
 
-    local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Toggle", Default = false })
+    local Toggle = Tabs.test:AddToggle("MyToggle", {Title = "Toggle", Default = false })
 
     Toggle:OnChanged(function()
         print("Toggle changed:", Options.MyToggle.Value)
@@ -582,7 +607,7 @@ do
 
 
     
-    local Slider = Tabs.Main:AddSlider("Slider", {
+    local Slider = Tabs.test:AddSlider("Slider", {
         Title = "Slider",
         Description = "This is a slider",
         Default = 2,
@@ -602,7 +627,7 @@ do
 
 
 
-    local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
+    local Dropdown = Tabs.test:AddDropdown("Dropdown", {
         Title = "Dropdown",
         Values = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"},
         Multi = false,
@@ -617,7 +642,7 @@ do
 
 
     
-    local MultiDropdown = Tabs.Main:AddDropdown("MultiDropdown", {
+    local MultiDropdown = Tabs.test:AddDropdown("MultiDropdown", {
         Title = "Dropdown",
         Description = "You can select multiple values.",
         Values = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"},
@@ -641,7 +666,7 @@ do
 
 
 
-    local Colorpicker = Tabs.Main:AddColorpicker("Colorpicker", {
+    local Colorpicker = Tabs.test:AddColorpicker("Colorpicker", {
         Title = "Colorpicker",
         Default = Color3.fromRGB(96, 205, 255)
     })
@@ -654,7 +679,7 @@ do
 
 
 
-    local TColorpicker = Tabs.Main:AddColorpicker("TransparencyColorpicker", {
+    local TColorpicker = Tabs.test:AddColorpicker("TransparencyColorpicker", {
         Title = "Colorpicker",
         Description = "but you can change the transparency.",
         Transparency = 0,
@@ -670,7 +695,7 @@ do
 
 
 
-    local Keybind = Tabs.Main:AddKeybind("Keybind", {
+    local Keybind = Tabs.test:AddKeybind("Keybind", {
         Title = "KeyBind",
         Mode = "Toggle", -- Always, Toggle, Hold
         Default = "LeftControl", -- String as the name of the keybind (MB1, MB2 for mouse buttons)
@@ -713,7 +738,7 @@ do
     Keybind:SetValue("MB2", "Toggle") -- Sets keybind to MB2, mode to Hold
 
 
-    local Input = Tabs.Main:AddInput("Input", {
+    local Input = Tabs.test:AddInput("Input", {
         Title = "Input",
         Default = "Default",
         Placeholder = "Placeholder",
@@ -757,12 +782,7 @@ SaveManager:BuildConfigSection(Tabs.Settings)
 
 Window:SelectTab(1)
 
-Fluent:Notify({
-    Title = "Fluent",
-    Content = "The script has been loaded.",
-    Duration = 8
-})
-
 -- You can use the SaveManager:LoadAutoloadConfig() to load a config
 -- which has been marked to be one that auto loads!
 SaveManager:LoadAutoloadConfig()
+end
