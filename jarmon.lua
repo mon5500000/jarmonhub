@@ -3,7 +3,7 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "Jarmon Hub",
+    Title = "Jarmon Hub (beta test)",
     SubTitle = "All map",
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
