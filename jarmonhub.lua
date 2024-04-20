@@ -1,6 +1,24 @@
+if game.PlaceId ~= 537413528 then
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/jarmonxd/jarmonhubobf/main/jarmon.lua'))()
+else
+    -- Your code here
+
+
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+local VirtualUser = game:GetService('VirtualUser')
+local Players = game:GetService("Players")
+
+local function antiAfk()
+    while wait(60) do -- ทำซ้ำทุกๆ 60 วินาที (ปรับเวลาได้)
+        VirtualUser:CaptureController()
+        VirtualUser:ClickButton2(Vector2.new()) -- การกระทำป้องกัน AFK
+    end
+end
+-- เชื่อมต่อกับเหตุการณ์ 'Idled'
+local player = Players.LocalPlayer
+player.Idled:connect(antiAfk)
 
 local Window = Fluent:CreateWindow({
     Title = "Build A Boat For Treasure - Jarmon Hub V1",
@@ -65,7 +83,6 @@ do
                 local TweenService = game:GetService("TweenService")
                 local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
                 {CFrame = game:GetService("Workspace").BoatStages.NormalStages.CaveStage1.Sand.CFrame + Vector3.new(0, 70, 0)})
-        local TweenService = game:GetService("TweenService")
         Tw:Play()
         task.wait(1.8)
         local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
@@ -128,9 +145,95 @@ do
         Toggle:SetValue(config.autoFarm)
 
 
+        Tabs.Farm:AddParagraph({
+            Title = "test",
+            Content = "test\ntest"
+        })
+    
+        Tabs.Farm:AddButton({
+            Title = "Enable Autofarm",
+            Description = "Very Enable Autofarm",
+            Callback = function()
+                getgenv().TreasureAutoFarm = {
+                    Enabled = true, -- // Toggle the auto farm on and off
+                    Teleport = 2, -- // How fast between each teleport between the stages and stuff
+                    TimeBetweenRuns = 5 -- // How long to wait until it goes to the next run
+                }
+                
+                -- // Services
+                local Players = game:GetService("Players")
+                local Workspace = game:GetService("Workspace")
+                local Lighting = game:GetService("Lighting")
+                
+                -- // Vars
+                local LocalPlayer = Players.LocalPlayer
+                
+                -- // Goes through all of the stages
+                local autoFarm = function(currentRun)
+                    -- // Variables
+                    local Character = LocalPlayer.Character
+                    local NormalStages = Workspace.BoatStages.NormalStages
+                
+                    -- // Go to each stage thing
+                    for i = 1, 10 do
+                        local Stage = NormalStages["CaveStage" .. i]
+                        local DarknessPart = Stage:FindFirstChild("DarknessPart")
+                
+                        if (DarknessPart) then
+                            -- // Teleport to next stage
+                            print("Teleporting to next stage: Stage " .. i)
+                            Character.HumanoidRootPart.CFrame = DarknessPart.CFrame
+                
+                            -- // Create a temp part under you
+                            local Part = Instance.new("Part", LocalPlayer.Character)
+                            Part.Anchored = true
+                            Part.Position = LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0, 6, 0)
+                
+                            -- // Wait and remove temp part
+                            wait(getgenv().TreasureAutoFarm.Teleport)
+                            Part:Destroy()
+                        end
+                    end
+                
+                    -- // Go to end
+                    print("Teleporting to the end")
+                    repeat wait()
+                        Character.HumanoidRootPart.CFrame = NormalStages.TheEnd.GoldenChest.Trigger.CFrame
+                    until Lighting.ClockTime ~= 14
+                
+                    -- // Wait until you have respawned
+                    local Respawned = false
+                    local Connection
+                    Connection = LocalPlayer.CharacterAdded:Connect(function()
+                        Respawned = true
+                        Connection:Disconnect()
+                    end)
+                
+                    repeat wait() until Respawned
+                    wait(getgenv().TreasureAutoFarm.TimeBetweenRuns)
+                    print("Auto Farm: Run " .. currentRun .. " finished")
+                end
+                
+                -- // Whilst the autofarm is enable, constantly do it
+                local autoFarmRun = 1
+                while wait() do
+                    if (getgenv().TreasureAutoFarm.Enabled) then
+                        print("Initialising Auto Farm: Run " .. autoFarmRun)
+                        autoFarm(autoFarmRun)
+                        autoFarmRun = autoFarmRun + 1
+                    end
+                end
+                      end    
+                })
 
+                Tabs.Farm:AddButton({
+            Title = "Disable Autofarm",
+            Description = "",
+            Callback = function()
+                game.Players.LocalPlayer.Character:BreakJoints()
 
-
+            end
+        })
 
     ---------------------------------------------(main)------------------------------------------------
     local Slider = Tabs.Main:AddSlider("Slider", {
@@ -679,12 +782,7 @@ SaveManager:BuildConfigSection(Tabs.Settings)
 
 Window:SelectTab(1)
 
-Fluent:Notify({
-    Title = "Fluent",
-    Content = "The script has been loaded.",
-    Duration = 8
-})
-
 -- You can use the SaveManager:LoadAutoloadConfig() to load a config
 -- which has been marked to be one that auto loads!
 SaveManager:LoadAutoloadConfig()
+end
