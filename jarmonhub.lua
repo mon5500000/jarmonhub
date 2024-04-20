@@ -22,7 +22,7 @@ player.Idled:connect(antiAfk)
 
 local Window = Fluent:CreateWindow({
     Title = "Build A Boat For Treasure - Jarmon Hub V1",
-    SubTitle = "Free Script",
+    SubTitle = "Free Script (beta test)",
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
