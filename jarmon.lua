@@ -85,7 +85,7 @@ Tabs.script:AddButton({
 })
 Tabs.script:AddButton({
     Title = "Dex Explorer",
-    Description = "Dex Explorer รันช้าแต่ดี",
+    Description = "Dex Explorer ดี",
     Callback = function()
 loadstring(game:HttpGet('https://ithinkimandrew.site/scripts/tools/dark-dex.lua'))()
         end
