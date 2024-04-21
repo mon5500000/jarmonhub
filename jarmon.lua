@@ -1,3 +1,15 @@
+local VirtualUser = game:GetService('VirtualUser')
+local Players = game:GetService("Players")
+
+local function antiAfk()
+    while wait(60) do -- ทำซ้ำทุกๆ 60 วินาที (ปรับเวลาได้)
+        VirtualUser:CaptureController()
+        VirtualUser:ClickButton2(Vector2.new()) -- การกระทำป้องกัน AFK
+    end
+end
+-- เชื่อมต่อกับเหตุการณ์ 'Idled'
+local player = Players.LocalPlayer
+player.Idled:connect(antiAfk)
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
