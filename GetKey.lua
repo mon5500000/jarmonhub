@@ -117,7 +117,7 @@ Submit.MouseButton1Click:Connect(function()
     local key = tostring(Input.Text)
     if key == tostring(Setting.CorrectKey) then
 		GUI:Destroy()
-        loadstring(game:HttpGet"https://raw.githubusercontent.com/jarmonxd/jarmonhubobf/main/jarmonhub.lua")()
+loadstring(game:HttpGet"https://raw.githubusercontent.com/jarmonxd/unahub/main/script.lua")()
     else
         print("Incorrect")
     end
