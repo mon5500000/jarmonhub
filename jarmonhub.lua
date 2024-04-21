@@ -1,3 +1,5 @@
+setclipboard("https://discord.gg/qpA4rkrr9A")
+game.Players.LocalPlayer:Kick("กรุณาเอาสคริปตัวใหม่ด้วยที่ https://discord.gg/qpA4rkrr9A")
 local placeId = game.PlaceId
 
 if placeId == 537413528 then
